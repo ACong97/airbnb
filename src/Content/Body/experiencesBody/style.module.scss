@@ -1,0 +1,44 @@
+.app {
+    margin-top: 92px;
+
+    .heading {
+        margin-bottom: 24px;
+    }
+
+    .container {
+        height: 100%;
+        width: 100%;
+        position: relative;
+        border-radius: 16px;
+        overflow: hidden;
+        transform: scaleY(90%);
+
+        .img {
+            height: 100%;
+            width: 100%;
+            
+            img {
+                height: 100%;
+                width: 100%;
+                object-fit: content;
+            }
+        }
+    
+        .content {
+            display:flex; 
+            flex-direction: column;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 40px 20% 40px 40px;
+            height: 100%;
+    
+            .text {
+                color: #fff;
+                font-size: 24px;
+            }
+        }
+    }
+
+}

@@ -1,0 +1,282 @@
+@keyframes hoverOpen {
+    from {transform: scaleX(0)}
+    to {transform: scaleX(1)}
+}
+
+
+.header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+    padding: 8px;
+    align-items: center; 
+    background-color: #000;   
+    color: #fff;
+    z-index: 100;
+    
+    // headerLeft
+    .headerLeft {
+        height: 40px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding-left: 5px;
+    
+
+        .leftLogo {
+            object-fit: contain;
+            object-position: left;
+            height: 100%;
+            cursor: pointer;
+        }  
+    }
+
+    // headerMiddle
+    .midleContainer {
+        color: #fff;
+        align-items: center;
+        
+        ul {
+            list-style: none;
+        }
+
+        .midleItem {
+            padding: 10px 12px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .midleItem:hover {
+            opacity: 0.8;
+        }
+
+        .midleItem:hover.midleItem::before {
+            animation: hoverOpen linear 0.2s;
+            display: block;
+        }
+        
+        .midleItem::before {
+            content: "";
+            display: none;
+            position: absolute;
+            width: 4px;
+            bottom: 0;
+            left: 50%;
+            border-bottom: solid 2px #fff;
+        }
+    }
+
+
+    // headerRight
+    .rightContainer {
+        
+
+
+        .rightButton {
+            display: inline-block;
+            line-height: 0;
+            color: #fff;
+            background-color: #000;
+            border: none;
+            padding: 8px;
+            margin: 0 8px;
+            box-sizing: content-box;
+            border-radius:50%;
+        }
+
+        .rightBecomeHost {
+            padding: 8px 16px;
+            border-radius: 36px;
+        }
+
+        .rightBecomeHost:hover,
+        .rightButton:hover {
+            background-color: rgb(119, 119, 119);
+        }
+        
+        .userLoggin {
+            background-color: #fff;
+            color: rgb(131, 131, 131);
+            align-items: center;
+            display: flex;
+            justify-content:space-evenly;
+            padding: 4px 8px;
+            border-radius: 24px;
+            margin-left: 4px;
+            position: relative;
+    
+            // loginIcon
+            span {
+                display: inline-block;
+                width:20px;
+                line-height: 0;
+            }
+
+        }
+        // DropBox
+        .userDropbox {
+            color: #000;
+            position: absolute;
+            top: 130%;
+            right: 0;
+            background-color: #fff;
+            width: 246px;
+            text-align: left;
+            border-radius: 16px;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            display: none;
+            
+            p {
+                padding: 16px 16px;
+            }
+            
+            // Upper
+            .userDropBoxTop {
+                border-bottom: 1px solid #ccc;
+            }
+            
+            .signIn {
+                font-weight: 600;
+            }
+            // Footer
+        }
+        .active {
+            display: block;
+            z-index: 1;
+        }
+    }
+
+    // SearchActive
+    .searchActiveContainer {
+        height: 100px;
+
+
+        .searchActive {
+            position: relative;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, 25%);
+            width: 842px;
+            height: 70px;
+    
+            border-radius: 48px;
+            
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #fff;
+            color: #000;
+            font-size: 14px;
+    
+            div {
+                position: relative;
+                flex: 25% 25% 1;
+                align-self: stretch;
+                padding: 16px 20px;
+                border-radius: 36px;
+                cursor: pointer;
+
+                p {
+                    color: #ccc;
+                }
+
+                input {
+                    border: none;
+                    background-color: inherit;
+                }
+                input::placeholder {
+                    color: #ccc;
+                }
+                input:focus {
+                    outline: none;
+                }
+            }
+
+            
+            div:hover {
+                background-color: rgb(240, 240, 240);
+            }
+            
+            div::after {
+                content: '';
+                height: 32px;
+                position: absolute;
+                top: 50%;
+                right: 0;
+                transform: translate(-50% , -50%);
+                border-right: 1px solid rgb(214, 214, 214);
+            }
+            div:nth-child(4)::after {
+                border: none;
+            }
+
+            span {
+                right: 16px;
+                position: absolute;
+                width: 50px;
+                line-height: 0;
+                padding: 16px;
+            }
+        }
+    }
+}
+
+// Extra
+.midleContainer1 {
+    color: #000;
+    background-color: #fff;
+    padding: 4px 12px 4px 16px;
+    display: flex;
+    font-size: 14px;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 24px;
+    border: 1px solid #ccc;
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+    font-weight: 600;
+    margin: 8px 0;
+
+    .midleContainerIcon {
+        display: flex;
+        height: 16px;
+        width: 16px;
+        padding: 8px;
+        box-sizing: content-box;
+        margin-right: -4px;
+    }
+}
+.midleContainer1:hover {
+    cursor: pointer;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+// Button
+.searchButton {
+    border-radius: 100%;
+    color: #fff;
+    background-color: #FF385C;
+    cursor: pointer;
+}
+.searchButton:hover {
+    background-color: #fc224a;
+}
+
+// Extra
+.cursorPointer {
+    cursor: pointer;
+}
+.icon20 {
+    height: 20px;
+}
+.icon30 {
+    height: 30px;
+}
+.positionRelative {
+    position: relative;
+}
+.hide {
+    display: none!important;
+}
+

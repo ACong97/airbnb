@@ -1,0 +1,248 @@
+.container {
+    z-index: 1;
+    display: none;
+    padding-top: 100px;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    
+    .background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.9;
+        background-color: #000;
+    }
+    
+    .containerContent {
+        position: relative;
+        z-index: 2;
+        opacity: 1;
+        width: 1032px;
+        background-color: #fff;
+        height: 840px;
+        color: #000;
+        border-bottom-left-radius: 16px;
+
+
+        .exitIcon {
+            position: absolute;
+            top: -60px;
+            left: 0;
+            width: 100%;
+            height: 66px;
+            z-index: 1;
+            background-color: #fff;
+            padding: 20px 20px 20px 28px;
+            border-top-left-radius: 16px;
+            border-top-right-radius: 16px;
+            
+            div {
+                cursor: pointer;
+                color: rgb(84, 84, 84);
+                width:20px;
+                
+            }
+        }
+        
+        .content {
+            padding: 32px;
+            overflow: hidden;
+            overflow-y:scroll;
+            height: 840px;
+
+    
+            .navBar {
+                display: flex;
+                border-bottom: 1px solid #ccc;
+                margin: 0 0 68px 0;
+                align-items: stretch;
+    
+                .langButton {
+                    padding-bottom: 16px;
+                }
+                
+                .moneyButton {
+                    margin-left: 40px;
+                    padding-bottom: 16px;
+                }
+                .activeButton {
+                    border-bottom: 2px solid #000;
+                    font-weight: bold;
+                }
+            }
+            // Thay đổi ngôn ngữ
+            .langChange {
+                .autoTrans {
+                    display: flex;
+                    margin-bottom: 68px;
+                    background-color: rgba(246, 244, 255, 0.33);
+    
+    
+                    .autoTransText {
+                        font-size: 20px;
+        
+                        .autoTransTextContent {
+                            display: flex;
+                            align-items: center;
+        
+                            h5 {
+                                margin-right: 8px;
+                                font-weight: 500;
+                            }
+                            svg {
+                                height:20px;
+                            }
+                        }
+        
+                        p {
+                            color: rgb(84, 84, 84);
+                        }
+                    }
+        
+                    .autoTransButton {
+                        height: 32px;
+                        width: 48px;
+                        background-color: rgb(79, 79, 79);
+                        align-self: center;
+                        border-radius:16px;
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+                        margin-left: 16px;
+                        cursor: pointer;
+                        opacity: 0.6;
+                        
+                        div {
+                            height: 28px;
+                            width: 28px;
+                            background-color: #fff;
+                            border-radius: 16px;
+                            margin: 0 2px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            
+                            svg {
+                                display: none;
+                            }
+                        }
+                    }
+                    .autoTransButton:hover {
+                        opacity: 1;
+                    }
+                    
+                    .active {
+                        justify-content: flex-end;
+                        opacity: 1;
+        
+                        div {
+                            height: 28px;
+                            width: 28px;
+                            background-color: #fff;
+                            border-radius: 16px;
+                            margin: 0 2px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+        
+                            svg {
+                                display: block;
+                                height: 16px;
+                            }
+                        }
+                    }
+                }
+    
+                .langSuggest {
+                    margin-bottom: 68px;
+    
+                    .langSuggestHeading {
+                        margin-bottom: 40px;
+                    }
+    
+                    ul {
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        list-style: none;
+    
+    
+                        .langSuggestItem {
+                            padding: 12px 12px 12px 20px;
+                            cursor: pointer;
+                            border: 1px solid transparent;
+    
+                            p {
+                                color: rgb(84, 84, 84);
+                            }
+                        }
+                        .langSuggestItem:hover {
+                            background-color: rgba(246, 244, 255, 0.33);
+                        }
+                        .langSuggestItem.active {
+                            border: 1px solid #000;
+                            border-radius: 12px;
+                        }
+                    }
+                }
+            }
+
+            // Content 2
+            .langSuggest {
+                margin-bottom: 68px;
+
+                .langSuggestHeading {
+                    margin-bottom: 40px;
+                }
+
+                ul {
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    list-style: none;
+
+
+                    .langSuggestItem {
+                        padding: 12px 12px 12px 20px;
+                        cursor: pointer;
+                        border: 1px solid transparent;
+
+                        p {
+                            color: rgb(84, 84, 84);
+                        }
+                    }
+                    .langSuggestItem:hover {
+                        background-color: rgba(246, 244, 255, 0.33);
+                    }
+                    .langSuggestItem.active {
+                        border: 1px solid #000;
+                        border-radius: 12px;
+                    }
+                }
+            }
+        }
+
+    }
+
+}
+
+.scrollbar {
+    overflow-y: scroll;
+}
+.cursorPointer {
+    cursor: pointer;
+}
+.show {
+    display: flex;
+}
+.displayNone {
+    display: none;
+}
