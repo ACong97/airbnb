@@ -1,7 +1,10 @@
+.container {
+    margin: 54px 0;
+}
+
 @media (min-width: 1024px) {
     .container {
         list-style: none;
-    
     
         .item:first-child {
             font-weight: bold;
@@ -21,6 +24,55 @@
     
     .footer {
         border-top: 1px solid rgba(204, 204, 204, 0.618);
+        padding: 28px 0;
+        display: flex;
+
+        .footerCopyright {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            list-style: none;
+            flex: 50 0 0;
+
+            .copyrightItem {
+                
+            }
+
+            .dot {
+                display: inline-block;
+                text-align: center;
+                width: 19px;
+                margin-top: -8px;
+            }
+        }
+
+        .footerNavbar {
+            display: flex;
+            flex: 25 0 0;
+            justify-content: flex-end;
+            
+            button {
+                border: none;
+                background-color: inherit;
+                margin-left: 4px;
+                cursor: pointer;
+
+                span {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        .footerSocialmedia {
+            display: flex;
+            flex: 6 0 0;
+            justify-content: space-between;
+            margin-left: 32px;
+
+            .footerSocialmediaIcon {
+                cursor: pointer;
+            }
+        }
     }
 }
 

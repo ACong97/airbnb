@@ -6,7 +6,7 @@ import grid from '../../grid.module.scss'
 import { XIcon, TranslateIcon, CheckIcon } from '@heroicons/react/solid'
 
 
-function Language({ show }) {
+function Language({ show, showOnlyLang, showOnlyMoney }) {
     // Hook
     const [languageId, setLanguageId] = useState(1)
     const [autoLang, setAutoLang] = useState(clsx(styles.autoTransButton))

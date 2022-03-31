@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 
 import { GlobeAltIcon, UserCircleIcon, MenuIcon, SearchIcon } from '@heroicons/react/solid'
 import grid from '../grid.module.scss'
