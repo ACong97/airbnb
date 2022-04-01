@@ -11,7 +11,27 @@ function Heading() {
 
     const [show1, setShow] = useState(true);
     const [showUser, setShowUser] = useState(clsx(styles.userDropbox));
+    const [backgroundColor, setBackgroundColor] = useState(styles.header)
     const userNode = useRef()
+
+
+
+    ////////////////////////////
+    // scroll down
+    window.onscroll = (e) => {
+        handleBackgroundColor()
+    }
+    // handle backGround color change
+    const handleBackgroundColor = () => {
+        if(window.pageYOffset != 0) {
+            setBackgroundColor(clsx(styles.header, styles.backgroundWhite))
+        } else {
+            setBackgroundColor(styles.header)
+        }
+    }
+    // end
+    ////////////////////////////
+
 
     // handle
     const handleShowHeading = () => { setShow(!show1) }
@@ -23,24 +43,31 @@ function Heading() {
         }
     }
 
+
+
     return (
-        <header className={clsx(styles.header)}>
+        <header className={backgroundColor}>
             <Language show={show1} />
             <div className={clsx(grid.wide, grid.grid)}>
-                <div className={clsx(grid.row, grid.aliCenter)}>
+                <div className={clsx(grid.row, grid.aliCenter, grid.jSpaceBetween)}>
                     {/* Left */}
                     <div className={clsx(styles.headerLeft, grid.l4, grid.col)}>
                         <img
                             alt='1'
-                            className={styles.leftLogo}
+                            className={clsx(styles.logoPc, styles.leftLogo)}
                             src={require('./img/logoLeft.png')}
+                        />
+                        <img
+                            alt='1'
+                            className={clsx(styles.logoMobile, styles.leftLogo)}
+                            src={require('./img/logoLeftMini.png')}
                         />
                     </div>
 
 
                     {/* Middle -search */}
                     {/* When on top */}
-                    <div className={clsx(styles.midleContainer, grid.l4, grid.col)}>
+                    <div className={clsx(styles.midleContainer, grid.l4, grid.col, grid.m12)}>
                         <ul className={clsx(grid.row)}>
                             <li className={clsx(styles.midleItem, grid.l2, grid.col)}>Nơi ở</li>
                             <li className={clsx(styles.midleItem, grid.l4, grid.col)}>Trải nghiệm</li>
@@ -100,6 +127,14 @@ function Heading() {
 
             {/* Search */}
             <div className={clsx(grid.wide, grid.grid, styles.searchActiveContainer)}>
+                {/* Navbar sticky */}
+                <div className={clsx(styles.midleContainerSticky)}>
+                    <ul className={clsx(grid.row)}>
+                        <li className={clsx(styles.midleItem, grid.l2, grid.col)}>Nơi ở</li>
+                        <li className={clsx(styles.midleItem, grid.l4, grid.col)}>Trải nghiệm</li>
+                        <li className={clsx(styles.midleItem, grid.l6, grid.col)}>Trải nghiệm trực tuyến</li>
+                    </ul>
+                </div>
                 <div className={styles.searchActive}>
                     <div>
                         Địa điểm
