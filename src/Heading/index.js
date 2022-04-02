@@ -11,7 +11,10 @@ function Heading() {
 
     const [show1, setShow] = useState(true);
     const [showUser, setShowUser] = useState(clsx(styles.userDropbox));
-    const [backgroundColor, setBackgroundColor] = useState(styles.header)
+    const [backgroundColor, setBackgroundColor] = useState([styles.header])
+    const [heightHeader, setHeighHeader] = useState([])
+    const [colorChange, setColorChange] = useState([styles.midleContainer])
+    const [colorChangeSticky, setColorChangeSticky] = useState(styles.midleContainerSticky)
     const userNode = useRef()
 
 
@@ -20,13 +23,33 @@ function Heading() {
     // scroll down
     window.onscroll = (e) => {
         handleBackgroundColor()
+        handleColorChange()
+        handleBackGroundHeight()
     }
+
     // handle backGround color change
     const handleBackgroundColor = () => {
-        if(window.pageYOffset != 0) {
-            setBackgroundColor(clsx(styles.header, styles.backgroundWhite))
+        if (window.pageYOffset != 0) {
+            setBackgroundColor([styles.header, styles.backgroundWhite])
         } else {
-            setBackgroundColor(styles.header)
+            setBackgroundColor([styles.header])
+        }
+    }
+    const handleBackGroundHeight = () => {
+        if (window.pageYOffset != 0) {
+            setHeighHeader([styles.h80])
+        } else {
+            setHeighHeader([])
+        }
+    }
+    // handle text Color change
+    const handleColorChange = () => {
+        if (window.pageYOffset != 0) {
+            setColorChange([styles.midleContainer, styles.colorBlack, grid.l4, grid.col, grid.m12])
+            setColorChangeSticky(clsx(styles.midleContainerSticky, styles.colorBlack))
+        } else {
+            setColorChange([styles.midleContainer, grid.l4, grid.col, grid.m12])
+            setColorChangeSticky(clsx(styles.midleContainerSticky))
         }
     }
     // end
@@ -46,7 +69,7 @@ function Heading() {
 
 
     return (
-        <header className={backgroundColor}>
+        <header className={clsx(...backgroundColor, ...heightHeader)}>
             <Language show={show1} />
             <div className={clsx(grid.wide, grid.grid)}>
                 <div className={clsx(grid.row, grid.aliCenter, grid.jSpaceBetween)}>
@@ -67,7 +90,7 @@ function Heading() {
 
                     {/* Middle -search */}
                     {/* When on top */}
-                    <div className={clsx(styles.midleContainer, grid.l4, grid.col, grid.m12)}>
+                    <div className={clsx(...colorChange)}>
                         <ul className={clsx(grid.row)}>
                             <li className={clsx(styles.midleItem, grid.l2, grid.col)}>Nơi ở</li>
                             <li className={clsx(styles.midleItem, grid.l4, grid.col)}>Trải nghiệm</li>
@@ -92,6 +115,7 @@ function Heading() {
                             <p className={clsx(grid.col, styles.rightBecomeHost)}>Trở thành chủ nhà</p>
                             <button onClick={handleShowHeading} className={clsx(grid.col, styles.rightButton, styles.cursorPointer)}><GlobeAltIcon className={styles.icon20} /></button>
                             <div className={clsx(grid.col, styles.positionRelative)}>
+                                {/* Navbar của dropbox */}
                                 <div
                                     tabIndex="-1"
                                     onBlur={() => {
@@ -103,6 +127,7 @@ function Heading() {
                                     <MenuIcon className={clsx(styles.icon20)} />
                                     <UserCircleIcon className={clsx(styles.icon30)} />
                                 </div>
+                                {/* DropBox */}
                                 <div
                                     ref={userNode}
                                     className={showUser}
@@ -119,6 +144,7 @@ function Heading() {
                                         <p>Trợ giúp</p>
                                     </div>
                                 </div>
+                                {/* End dropBox */}
                             </div>
                         </div>
                     </div>
@@ -128,7 +154,7 @@ function Heading() {
             {/* Search */}
             <div className={clsx(grid.wide, grid.grid, styles.searchActiveContainer)}>
                 {/* Navbar sticky */}
-                <div className={clsx(styles.midleContainerSticky)}>
+                <div className={colorChangeSticky}>
                     <ul className={clsx(grid.row)}>
                         <li className={clsx(styles.midleItem, grid.l2, grid.col)}>Nơi ở</li>
                         <li className={clsx(styles.midleItem, grid.l4, grid.col)}>Trải nghiệm</li>

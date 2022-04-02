@@ -8,6 +8,25 @@
     }
 }
 
+@keyframes hide {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes show {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 
 .header {
     position: fixed;
@@ -91,7 +110,7 @@
             display: inline-block;
             line-height: 0;
             color: #fff;
-            background-color: #000;
+            background-color: transparent;
             border: none;
             padding: 8px;
             margin: 0 8px;
@@ -106,7 +125,7 @@
 
         .rightBecomeHost:hover,
         .rightButton:hover {
-            background-color: rgb(119, 119, 119);
+            background-color: rgba(255,255,255,0.15);
         }
 
         .userLoggin {
@@ -117,6 +136,7 @@
             justify-content: space-evenly;
             padding: 4px 8px;
             border-radius: 24px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
             margin-left: 4px;
             position: relative;
 
@@ -167,6 +187,7 @@
     // SearchActive
     .searchActiveContainer {
         height: 150px;
+        
 
         .midleContainerSticky {
             display: none;
@@ -180,6 +201,8 @@
             width: 100%;
             max-width: 860px;
             height: 70px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+
 
             border-radius: 48px;
 
@@ -310,6 +333,12 @@
 }
 .backgroundWhite {
     background-color: #fff;
+}
+.colorBlack {
+    color: #000!important;
+}
+.h80 {
+    height: 80px;
 }
 
 // Responsive
