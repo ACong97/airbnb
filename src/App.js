@@ -7,13 +7,13 @@ import Footer from './Footer'
 
 function App() {
   return (
-    <>
+    <div styles={{overflow: 'hidden'}}>
       <Heading />
       <HeadingContent />
       <BodyContent />
       <FooterContent />
       <Footer />
-    </>
+    </div>
   );
 }
 

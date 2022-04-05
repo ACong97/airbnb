@@ -22,8 +22,19 @@
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scaleX(1)
+    }
+
+    to {
+        transform: scaleX(0)
     }
 }
 
@@ -34,7 +45,7 @@
     top: 0;
     left: 0;
     box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
-    padding: 8px;
+    padding: 16px 8px;
     background-color: #000;
     color: #fff;
     z-index: 100;
@@ -68,6 +79,8 @@
     .midleContainer {
         color: #fff;
         align-items: center;
+        animation: show .3s linear;
+
 
         ul {
             list-style: none;
@@ -78,6 +91,12 @@
             position: relative;
             cursor: pointer;
             white-space: nowrap;
+        }
+
+        .midleItem.active.midleItem::before {
+            width: 20px;
+            left: 36%;
+            display: block;
         }
 
         .midleItem:hover {
@@ -109,7 +128,7 @@
         .rightButton {
             display: inline-block;
             line-height: 0;
-            color: #fff;
+            color: inherit;
             background-color: transparent;
             border: none;
             padding: 8px;
@@ -125,7 +144,7 @@
 
         .rightBecomeHost:hover,
         .rightButton:hover {
-            background-color: rgba(255,255,255,0.15);
+            background-color: rgba(255, 255, 255, 0.15);
         }
 
         .userLoggin {
@@ -187,7 +206,9 @@
     // SearchActive
     .searchActiveContainer {
         height: 150px;
-        
+        animation: show .3s linear;
+
+
 
         .midleContainerSticky {
             display: none;
@@ -228,6 +249,7 @@
                 input {
                     border: none;
                     background-color: inherit;
+                    width: 100%;
                 }
 
                 input::placeholder {
@@ -273,7 +295,7 @@
 .midleContainer1 {
     color: #000;
     background-color: #fff;
-    padding: 4px 12px 4px 16px;
+    padding: 8px 12px 8px 16px;
     display: flex;
     font-size: 14px;
     align-items: center;
@@ -282,7 +304,7 @@
     border: 1px solid #ccc;
     box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
     font-weight: 600;
-    margin: 8px 0;
+    animation: show .1s ease;
 
     .midleContainerIcon {
         display: flex;
@@ -331,12 +353,15 @@
 .hide {
     display: none !important;
 }
+
 .backgroundWhite {
     background-color: #fff;
 }
+
 .colorBlack {
-    color: #000!important;
+    color: #000 !important;
 }
+
 .h80 {
     height: 80px;
 }
@@ -352,11 +377,11 @@
     .logoMobile {
         display: block !important;
     }
-    
+
     .logoPc {
         display: none !important;
     }
-    
+
     .midleItem {
         font-size: 14px;
     }
@@ -364,17 +389,17 @@
 
 // Hide midle Navbar - Show it stick with search
 @media (max-width: 1023px) {
-    
+
     .midleContainer {
         display: none !important;
     }
-    
+
     // Stick navbar showup
     .midleContainerSticky {
         display: flex !important;
         align-items: center;
         justify-content: center;
-        
+
         .midleItem {
             padding: 10px 12px;
             position: relative;
@@ -382,16 +407,16 @@
             white-space: nowrap;
             list-style: none;
         }
-        
+
         .midleItem:hover {
             opacity: 0.8;
         }
-        
+
         .midleItem:hover.midleItem::before {
             animation: hoverOpen linear 0.2s;
             display: block;
         }
-        
+
         .midleItem::before {
             content: "";
             display: none;

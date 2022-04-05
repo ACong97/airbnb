@@ -11,23 +11,32 @@ function Heading() {
 
     const [show1, setShow] = useState(true);
     const [showUser, setShowUser] = useState(clsx(styles.userDropbox));
+
+    // header COLOR change
     const [backgroundColor, setBackgroundColor] = useState([styles.header])
-    const [heightHeader, setHeighHeader] = useState([])
+    // const [heightHeader, setHeighHeader] = useState([])
+    const [colorHeader, setColorHeader] = useState([])
     const [colorChange, setColorChange] = useState([styles.midleContainer])
-    const [colorChangeSticky, setColorChangeSticky] = useState(styles.midleContainerSticky)
+    const [colorChangeSticky, setColorChangeSticky] = useState([styles.midleContainerSticky])
+
+    // hide and show search box when moving scroll
+    const [topSearch, setTopSearch] = useState([])
+    const [movingSearch, setMovingSearch] = useState([styles.hide])
+
     const userNode = useRef()
 
 
 
-    ////////////////////////////
+    //////////////////////////////////////////////////////////////////
     // scroll down
-    window.onscroll = (e) => {
+    window.onscroll = () => {
         handleBackgroundColor()
         handleColorChange()
-        handleBackGroundHeight()
+        // handleBackGroundHeight()
+        handleBackgroundMoving()
     }
 
-    // handle backGround color change
+    // handle backGround change
     const handleBackgroundColor = () => {
         if (window.pageYOffset != 0) {
             setBackgroundColor([styles.header, styles.backgroundWhite])
@@ -35,28 +44,57 @@ function Heading() {
             setBackgroundColor([styles.header])
         }
     }
-    const handleBackGroundHeight = () => {
+    // const handleBackGroundHeight = () => {
+    //     if (window.pageYOffset != 0) {
+    //         setHeighHeader([styles.h80])
+    //     } else {
+    //         setHeighHeader([])
+    //     }
+    // }
+    const handleBackgroundMoving = () => {
         if (window.pageYOffset != 0) {
-            setHeighHeader([styles.h80])
+            setTopSearch([styles.hide])
+            setMovingSearch([])
         } else {
-            setHeighHeader([])
+            setTopSearch([])
+            setMovingSearch([styles.hide])
         }
     }
     // handle text Color change
     const handleColorChange = () => {
         if (window.pageYOffset != 0) {
-            setColorChange([styles.midleContainer, styles.colorBlack, grid.l4, grid.col, grid.m12])
-            setColorChangeSticky(clsx(styles.midleContainerSticky, styles.colorBlack))
+            setColorChange([styles.midleContainer, styles.colorBlack])
+            setColorChangeSticky([styles.midleContainerSticky, styles.colorBlack])
+            setColorHeader([styles.colorBlack])
         } else {
-            setColorChange([styles.midleContainer, grid.l4, grid.col, grid.m12])
-            setColorChangeSticky(clsx(styles.midleContainerSticky))
+            setColorChange([styles.midleContainer])
+            setColorChangeSticky([styles.midleContainerSticky])
+            setColorHeader([])
         }
     }
     // end
-    ////////////////////////////
+    //////////////////////////////////////////////////////////////////
 
 
-    // handle
+
+    //////////////////////////////////////////////////////////////////
+    // Search box handle when chose place and date
+    // 1. Active box
+    const handleClickActive = (e) => {
+        if(e.target == e.currentTarget) console.log(1)
+    }
+
+
+
+
+
+    
+    // End
+    //////////////////////////////////////////////////////////////////
+
+
+
+    // handle show language Box
     const handleShowHeading = () => { setShow(!show1) }
     const handleShowDropbox = (e) => {
         if (!userNode.current.className.includes('active')) {
@@ -69,7 +107,7 @@ function Heading() {
 
 
     return (
-        <header className={clsx(...backgroundColor, ...heightHeader)}>
+        <header className={clsx(...backgroundColor, ...colorHeader)}>
             <Language show={show1} />
             <div className={clsx(grid.wide, grid.grid)}>
                 <div className={clsx(grid.row, grid.aliCenter, grid.jSpaceBetween)}>
@@ -88,17 +126,20 @@ function Heading() {
                     </div>
 
 
-                    {/* Middle -search */}
+                    {/* Middle - search */}
                     {/* When on top */}
-                    <div className={clsx(...colorChange)}>
+                    <div className={clsx(...colorChange, grid.l4, grid.col, grid.m12, ...topSearch)}>
                         <ul className={clsx(grid.row)}>
-                            <li className={clsx(styles.midleItem, grid.l2, grid.col)}>Nơi ở</li>
+                            <li className={clsx(styles.midleItem, styles.active, grid.l2, grid.col)}>Nơi ở</li>
                             <li className={clsx(styles.midleItem, grid.l4, grid.col)}>Trải nghiệm</li>
                             <li className={clsx(styles.midleItem, grid.l6, grid.col)}>Trải nghiệm trực tuyến</li>
                         </ul>
                     </div>
                     {/* When moving */}
-                    <div className={clsx(grid.l4, grid.col, styles.hide)}>
+                    <div onClick={() => {
+                        setTopSearch([])
+                        setMovingSearch([styles.hide])
+                    }} className={clsx(grid.l4, grid.m6, grid.col, ...movingSearch)}>
                         <div className={clsx(styles.midleContainer1)}>
                             <div>
                                 Bắt đầu tìm kiếm
@@ -152,9 +193,9 @@ function Heading() {
             </div>
 
             {/* Search */}
-            <div className={clsx(grid.wide, grid.grid, styles.searchActiveContainer)}>
+            <div className={clsx(grid.wide, grid.grid, styles.searchActiveContainer, ...topSearch)}>
                 {/* Navbar sticky */}
-                <div className={colorChangeSticky}>
+                <div className={clsx(...colorChangeSticky)}>
                     <ul className={clsx(grid.row)}>
                         <li className={clsx(styles.midleItem, grid.l2, grid.col)}>Nơi ở</li>
                         <li className={clsx(styles.midleItem, grid.l4, grid.col)}>Trải nghiệm</li>
@@ -162,21 +203,26 @@ function Heading() {
                     </ul>
                 </div>
                 <div className={styles.searchActive}>
-                    <div>
+                    <div onClick={handleClickActive}>
                         Địa điểm
+                        <br/>
                         <input placeholder='Bạn sắp đi đâu?' />
                     </div>
-                    <div>
+                    <div onClick={handleClickActive}>
                         Nhận phòng
                         <p>Thêm ngày</p>
                     </div>
-                    <div>
+                    <div onClick={handleClickActive}>
                         Trả phòng
                         <p>Thêm ngày</p>
                     </div>
-                    <div>
+                    <div onClick={handleClickActive}>
                         Khách
                         <p>Thêm khách</p>
+                    </div>
+                    <div className={styles.hide}>
+                        Ngày
+                        <p>Thời điểm bạn muốn tham gia</p>
                     </div>
                     <span className={styles.searchButton}>
                         <SearchIcon />

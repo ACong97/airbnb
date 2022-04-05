@@ -1,3 +1,12 @@
+@keyframes showUp {
+    from {
+        transform: translateY(100%)
+    }
+    to {
+        transform: translateX(0)
+    }
+}
+
 .container {
     z-index: 100;
     display: none;
@@ -30,6 +39,7 @@
         height: 90%;
         color: #000;
         border-bottom-left-radius: 16px;
+        animation: showUp 1s linear;
 
 
         .exitIcon {
