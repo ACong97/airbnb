@@ -7,7 +7,7 @@ import Footer from './Footer'
 
 function App() {
   return (
-    <div styles={{overflow: 'hidden'}}>
+    <div>
       <Heading />
       <HeadingContent />
       <BodyContent />

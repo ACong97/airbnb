@@ -8,36 +8,27 @@
     }
 }
 
-@keyframes hide {
+@keyframes header-fadeOut {
     from {
+        transform: translate(-50%, 25%);
         opacity: 1;
     }
 
     to {
+        transform: translate(-50%, -50%);
         opacity: 0;
     }
 }
 
-@keyframes show {
+@keyframes smoothHeader {
     from {
-        opacity: 0;
+        height: 224px;
     }
 
     to {
-        opacity: 1;
+        height: 80px;
     }
 }
-
-@keyframes zoomIn {
-    from {
-        transform: scaleX(1)
-    }
-
-    to {
-        transform: scaleX(0)
-    }
-}
-
 
 .header {
     position: fixed;
@@ -79,7 +70,6 @@
     .midleContainer {
         color: #fff;
         align-items: center;
-        animation: show .3s linear;
 
 
         ul {
@@ -206,7 +196,6 @@
     // SearchActive
     .searchActiveContainer {
         height: 150px;
-        animation: show .3s linear;
 
 
 
@@ -223,10 +212,7 @@
             max-width: 860px;
             height: 70px;
             border: 1px solid rgba(0, 0, 0, 0.1);
-
-
             border-radius: 48px;
-
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -234,7 +220,7 @@
             color: #000;
             font-size: 14px;
 
-            div {
+            .searchActiveContent {
                 position: relative;
                 flex: 25% 25% 1;
                 align-self: stretch;
@@ -242,7 +228,7 @@
                 border-radius: 36px;
                 cursor: pointer;
 
-                p {
+                .searchActiveText {
                     color: #ccc;
                 }
 
@@ -259,14 +245,73 @@
                 input:focus {
                     outline: none;
                 }
+
+                .searchActiveSearchPlace {
+
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    background-color: #fff;
+                    padding: 36px 32px;
+                    margin-top: 10px;
+                    border-radius: 36px;
+                    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+                        rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+                    cursor: default;
+
+                    .searchActiveDefault {
+
+
+                        .placeText {
+                            margin-bottom: 24px;
+                        }
+
+                        .placeButton {
+                            width: 316px;
+                            display: flex;
+                            padding: 4px 24px;
+                            margin-top: 8px;
+                            justify-content: space-between;
+                            align-items: center;
+                            border-radius: 36px;
+                            border: 1px #ccc solid;
+                            background-color: #fff;
+                            cursor: pointer;
+                            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+                            .placeButtonText {
+                                color: #a230a6;
+                                font-weight: bold;
+                                font-size: 16px;
+                            }
+
+                            .placeButtonIcon svg {
+                                height: 36px;
+                                color: #a230a6;
+                            }
+                        }
+
+                        .placeButton:hover {
+                            box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+                        }
+                    }
+                }
+            }
+
+            .actived {
+                
+            }
+
+            .actived.searchActiveContent:hover {
+                background-color: #fff;
             }
 
 
-            div:hover {
+            .searchActiveContent:hover {
                 background-color: rgb(240, 240, 240);
             }
 
-            div::after {
+            .searchActiveContent::after {
                 content: '';
                 height: 32px;
                 position: absolute;
@@ -276,11 +321,11 @@
                 border-right: 1px solid rgb(214, 214, 214);
             }
 
-            div:nth-child(4)::after {
+            .searchActiveContent:nth-child(4)::after {
                 border: none;
             }
 
-            span {
+            .searchActiveButton {
                 right: 16px;
                 position: absolute;
                 width: 50px;
@@ -304,7 +349,6 @@
     border: 1px solid #ccc;
     box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
     font-weight: 600;
-    animation: show .1s ease;
 
     .midleContainerIcon {
         display: flex;
@@ -356,6 +400,11 @@
 
 .backgroundWhite {
     background-color: #fff;
+    animation: smoothHeader .1s linear;
+}
+
+.backgroundF7 {
+    background-color: #f7f7f7;
 }
 
 .colorBlack {

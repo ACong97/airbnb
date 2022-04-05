@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { useState, useRef } from 'react'
 
-import { GlobeAltIcon, UserCircleIcon, MenuIcon, SearchIcon } from '@heroicons/react/solid'
+import { GlobeAltIcon, UserCircleIcon, MenuIcon, SearchIcon, ChevronRightIcon } from '@heroicons/react/solid'
 import grid from '../grid.module.scss'
 import styles from './heading.module.scss';
 import Language from './language';
@@ -22,6 +22,9 @@ function Heading() {
     // hide and show search box when moving scroll
     const [topSearch, setTopSearch] = useState([])
     const [movingSearch, setMovingSearch] = useState([styles.hide])
+
+    // Search active
+    const [input, setInput] = useState('')
 
     const userNode = useRef()
 
@@ -81,14 +84,17 @@ function Heading() {
     // Search box handle when chose place and date
     // 1. Active box
     const handleClickActive = (e) => {
-        if(e.target == e.currentTarget) console.log(1)
+        if (e.target == e.currentTarget) console.log(1)
+    }
+
+    // 2. Search box
+    const handleInputChange = (e) => {
+        console.dir(e.target.value == '');
     }
 
 
 
 
-
-    
     // End
     //////////////////////////////////////////////////////////////////
 
@@ -203,28 +209,47 @@ function Heading() {
                     </ul>
                 </div>
                 <div className={styles.searchActive}>
-                    <div onClick={handleClickActive}>
+                    <div className={clsx(styles.searchActiveContent, styles.actived)} onClick={handleClickActive}>
                         Địa điểm
-                        <br/>
-                        <input placeholder='Bạn sắp đi đâu?' />
+                        <br />
+                        <input onChange={handleInputChange} placeholder='Bạn sắp đi đâu?' />
+                        <div className={clsx(styles.searchActiveSearchPlace)}>
+
+                            {/* default search active */}
+                            <div className={clsx(styles.searchActiveDefault)}>
+                                <p className={clsx(styles.placeText)}>Mọi lúc, mọi nơi</p>
+                                <button className={clsx(styles.placeButton)}>
+                                    <div className={clsx(styles.placeButtonText)}>Tìm kiếm linh hoạt</div>
+                                    <div className={clsx(styles.placeButtonIcon)}><ChevronRightIcon /></div>
+                                </button>
+                            </div>
+                            {/* end */}
+
+                            {/* GoogleMap box here */}
+                            <div>
+
+                            </div>
+
+
+                        </div>
                     </div>
-                    <div onClick={handleClickActive}>
+                    <div className={clsx(styles.searchActiveContent)} onClick={handleClickActive}>
                         Nhận phòng
-                        <p>Thêm ngày</p>
+                        <p className={clsx(styles.searchActiveText)}>Thêm ngày</p>
                     </div>
-                    <div onClick={handleClickActive}>
+                    <div className={clsx(styles.searchActiveContent)} onClick={handleClickActive}>
                         Trả phòng
-                        <p>Thêm ngày</p>
+                        <p className={clsx(styles.searchActiveText)}>Thêm ngày</p>
                     </div>
-                    <div onClick={handleClickActive}>
+                    <div className={clsx(styles.searchActiveContent)} onClick={handleClickActive}>
                         Khách
-                        <p>Thêm khách</p>
+                        <p className={clsx(styles.searchActiveText)}>Thêm khách</p>
                     </div>
                     <div className={styles.hide}>
                         Ngày
-                        <p>Thời điểm bạn muốn tham gia</p>
+                        <p className={clsx(styles.searchActiveText)}>Thời điểm bạn muốn tham gia</p>
                     </div>
-                    <span className={styles.searchButton}>
+                    <span className={clsx(styles.searchButton, styles.searchActiveButton)}>
                         <SearchIcon />
                     </span>
                 </div>
