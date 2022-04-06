@@ -1,11 +1,11 @@
 import clsx from 'clsx';
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 import { GlobeAltIcon, UserCircleIcon, MenuIcon, SearchIcon, ChevronRightIcon } from '@heroicons/react/solid'
 import grid from '../grid.module.scss'
 import styles from './heading.module.scss';
 import Language from './language';
-
+import { IoLocationOutline } from 'react-icons/io5'
 
 function Heading() {
 
@@ -24,11 +24,31 @@ function Heading() {
     const [movingSearch, setMovingSearch] = useState([styles.hide])
 
     // Search active
-    const [input, setInput] = useState('')
-
+    const [inputSearch, setInputSearch] = useState('')
+    const [inputSearchData, setInputSearchData] = useState('')
+    const locationsApi = 'https://airbnb-clone-sever.herokuapp.com/api/locations'
     const userNode = useRef()
 
 
+    // get API locations when type
+    useEffect(() => {
+        fetch(locationsApi)
+            .then(function (responsive) {
+                return responsive.json()
+            })
+            .then(data => {
+                setInputSearchData(data)
+            })
+            .catch(err => (console.error(err)))
+    }, [inputSearch])
+
+    console.log(
+        inputSearchData.filter(data => {
+            return data.location.includes('a')
+        }).map(item => {
+            return <h1>{item}</h1>
+        })
+    );
 
     //////////////////////////////////////////////////////////////////
     // scroll down
@@ -89,7 +109,7 @@ function Heading() {
 
     // 2. Search box
     const handleInputChange = (e) => {
-        console.dir(e.target.value == '');
+        setInputSearch(e.target.value)
     }
 
 
@@ -216,7 +236,7 @@ function Heading() {
                         <div className={clsx(styles.searchActiveSearchPlace)}>
 
                             {/* default search active */}
-                            <div className={clsx(styles.searchActiveDefault)}>
+                            <div className={clsx(styles.searchPlaceDefault, styles.hide)}>
                                 <p className={clsx(styles.placeText)}>Mọi lúc, mọi nơi</p>
                                 <button className={clsx(styles.placeButton)}>
                                     <div className={clsx(styles.placeButtonText)}>Tìm kiếm linh hoạt</div>
@@ -226,8 +246,30 @@ function Heading() {
                             {/* end */}
 
                             {/* GoogleMap box here */}
-                            <div>
-
+                            <div className={clsx(styles.searchPlaceActive)}>
+                                {/* {inputSearchData.filter(item => {
+                                    console.log(item.location.includes());
+                                })} */}
+                                <div className={clsx(styles.placeActiveContainer)}>
+                                    <div className={clsx(styles.locationIcon)}><IoLocationOutline /></div>
+                                    <div className={clsx(styles.locationText)}>Địa điểm</div>
+                                </div>
+                                <div className={clsx(styles.placeActiveContainer)}>
+                                    <div className={clsx(styles.locationIcon)}><IoLocationOutline /></div>
+                                    <div className={clsx(styles.locationText)}>Địa điểm</div>
+                                </div>
+                                <div className={clsx(styles.placeActiveContainer)}>
+                                    <div className={clsx(styles.locationIcon)}><IoLocationOutline /></div>
+                                    <div className={clsx(styles.locationText)}>Địa điểm</div>
+                                </div>
+                                <div className={clsx(styles.placeActiveContainer)}>
+                                    <div className={clsx(styles.locationIcon)}><IoLocationOutline /></div>
+                                    <div className={clsx(styles.locationText)}>Địa điểm</div>
+                                </div>
+                                <div className={clsx(styles.placeActiveContainer)}>
+                                    <div className={clsx(styles.locationIcon)}><IoLocationOutline /></div>
+                                    <div className={clsx(styles.locationText)}>Địa điểmĐịa điểmĐịa điểmĐịa điểmĐịa điểmĐịa điểmĐịa điểm</div>
+                                </div>
                             </div>
 
 

@@ -247,20 +247,20 @@
                 }
 
                 .searchActiveSearchPlace {
-
+                    width: 404px;
                     position: absolute;
                     top: 100%;
                     left: 0;
                     background-color: #fff;
-                    padding: 36px 32px;
+                    padding: 24px 0 8px 0;
                     margin-top: 10px;
                     border-radius: 36px;
                     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
                         rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
                     cursor: default;
 
-                    .searchActiveDefault {
-
+                    .searchPlaceDefault {
+                        padding: 0 32px;
 
                         .placeText {
                             margin-bottom: 24px;
@@ -295,12 +295,38 @@
                             box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
                         }
                     }
+
+                    .searchPlaceActive {
+
+                        .placeActiveContainer {
+                            display: flex;
+                            padding: 0 32px;
+                            align-items: center;
+
+                            .locationIcon  {
+                                padding: 16px;
+                                margin: 8px 12px 8px 0;
+                                background-color: rgb(230, 230, 230);
+                                border-radius: 12px;
+
+                                svg {
+                                    font-size: 24px;
+                                    color: rgb(44, 44, 44);
+                                }
+                            }
+                            .locationIcon:nth-child(4) {
+                                margin-top: 0;
+                            }
+
+                            .locationText {
+
+                            }
+                        }
+                    }
                 }
             }
 
-            .actived {
-                
-            }
+            .actived {}
 
             .actived.searchActiveContent:hover {
                 background-color: #fff;
