@@ -223,7 +223,6 @@
             .searchActiveContent {
                 position: relative;
                 flex: 25% 25% 1;
-                align-self: stretch;
                 padding: 16px 20px;
                 border-radius: 36px;
                 cursor: pointer;
@@ -260,7 +259,7 @@
                     cursor: default;
 
                     .searchPlaceDefault {
-                        padding: 0 32px;
+                        padding: 16px 32px;
 
                         .placeText {
                             margin-bottom: 24px;
@@ -269,8 +268,8 @@
                         .placeButton {
                             width: 316px;
                             display: flex;
-                            padding: 4px 24px;
-                            margin-top: 8px;
+                            padding: 8px 24px;
+                            margin: 12px 0;
                             justify-content: space-between;
                             align-items: center;
                             border-radius: 36px;
@@ -303,7 +302,7 @@
                             padding: 0 32px;
                             align-items: center;
 
-                            .locationIcon  {
+                            .locationIcon {
                                 padding: 16px;
                                 margin: 8px 12px 8px 0;
                                 background-color: rgb(230, 230, 230);
@@ -314,19 +313,103 @@
                                     color: rgb(44, 44, 44);
                                 }
                             }
+
                             .locationIcon:nth-child(4) {
                                 margin-top: 0;
                             }
 
-                            .locationText {
+                            .locationText {}
+                        }
+                    }
+                }
 
+                .searchActiveDate {
+                    position: absolute;
+                    left: -50%;
+                    top: 100%;
+                    background-color: #fff;
+                    padding: 24px 0 8px 0;
+                    margin-top: 10px;
+                    border-radius: 36px;
+                    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+                        rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+                    cursor: default;
+                }
+            }
+
+            .searchActiveMidleContainer {
+                position: relative;
+                flex: 40% 40% 1;
+                display: flex;
+
+                .searchActiveMidleContent {
+                    flex: 50% 50% 1;
+                    padding: 16px 20px;
+                    border-radius: 36px;
+                    cursor: pointer;
+                    position: relative;
+                }
+
+                .searchActiveMidleContent::before {
+                    content: '';
+                    height: 32px;
+                    position: absolute;
+                    top: 50%;
+                    right: 0;
+                    transform: translate(-50%, -50%);
+                    border-right: 1px solid rgb(214, 214, 214);
+                }
+
+                .searchActiveMidleDropbox {
+                    position: absolute;
+                    top: 100%;
+                    left: -50%;
+                    padding: 12px 24px;
+                    background-color: #fff;
+                    margin-top: 10px;
+                    border-radius: 36px;
+                    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+                        rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+                    cursor: default;
+
+                    .calendar {}
+
+                    .searchActiveMidleDropboxText {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        div {
+                            background-color: #ebebeb;
+                            align-items: center;
+                            display: flex;
+                            padding: 4px;
+                            border-radius: 24px;
+
+                            p {
+                                border-radius: 24px;
+                                padding: 5px 14px;
+                                cursor: pointer;
+                            }
+                            p:hover,
+                            p.selected {
+                                background-color: #fff !important;
+                            }
+
+                            .pLast {
+                                margin-left: 6px;
                             }
                         }
                     }
                 }
             }
 
-            .actived {}
+
+
+            .actived {
+                background-color: #fff;
+                box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+            }
 
             .actived.searchActiveContent:hover {
                 background-color: #fff;
@@ -334,7 +417,7 @@
 
 
             .searchActiveContent:hover {
-                background-color: rgb(240, 240, 240);
+                background-color: #ebebeb;
             }
 
             .searchActiveContent::after {
@@ -347,7 +430,7 @@
                 border-right: 1px solid rgb(214, 214, 214);
             }
 
-            .searchActiveContent:nth-child(4)::after {
+            .searchActiveContent:nth-child(3)::after {
                 border: none;
             }
 
@@ -430,7 +513,7 @@
 }
 
 .backgroundF7 {
-    background-color: #f7f7f7;
+    background-color: #f7f7f7 !important;
 }
 
 .colorBlack {
