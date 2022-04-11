@@ -6,6 +6,7 @@ import grid from '../grid.module.scss'
 import styles from './heading.module.scss';
 import Language from './language';
 import { IoLocationOutline } from 'react-icons/io5'
+import { BsCalendar, BsCalendarCheck } from 'react-icons/bs'
 
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
@@ -30,8 +31,8 @@ function Heading() {
 
     // Search active
     // 1. search
-    const [searchActived, setSearchActived] = useState([])
-    const [searchDisplay, setSearchDisplay] = useState([styles.hide])
+    const [searchActived, setSearchActived] = useState([]) // set active hoặc trạng thái thường nút Địa điểm
+    const [searchDisplay, setSearchDisplay] = useState([styles.hide]) // ẩn hiện dropbox của Địa điểm
     const [inputSearch, setInputSearch] = useState('') // Lấy input
     const [inputSearchData, setInputSearchData] = useState([]) // Dữ liệu dùng để render
     const [searchBoxHide, setSearchBoxHide] = useState([styles.hide]) // Search box active
@@ -40,11 +41,17 @@ function Heading() {
     const locationsApi = 'https://airbnb-clone-sever.herokuapp.com/api/locations'
     const userNode = useRef()
     // 2. date
-    const [dayStartActived, setDayStartActived] = useState([])
-    const [dayEndActived, setDayEndActived] = useState([])
+    const [dayStartDisplay, setDayStartDisplay] = useState([]) // ẩn hiện daystart
+    const [dayEndDisplay, setDayEndDisplay] = useState([]) // Ẩn hiện dayend
+    const [dayStartActived, setDayStartActived] = useState([]) // Ngày bắt đầu đến active khi Click
+    const [dayEndActived, setDayEndActived] = useState([]) // Ngày cuối cùng active khi Click
     const [dateDropboxDisplay, setDateDropboxDisplay] = useState([styles.hide]) // dropbox display
-    const [dayFlexibleSelected, setDayFlexibleSelected] = useState([])
-    const [calenderSelected, setCalenderSelected] = useState([])
+    const [dayFlexibleSelected, setDayFlexibleSelected] = useState([]) // Ngày linh hoạt và Lịch khi được chuyển
+    const [calendarSelected, setCalendarSelected] = useState([styles.selected]) // Lịch chọn ngày
+    const [flexibleDayDisplay, setFlexibleDayDisplay] = useState([styles.hide]) // Ẩn hiện flexible ( ngày linh hoạt )
+    const [flexibleDayActived, setFlexibleDayActived] = useState([]) // Ẩn hiện active flexible ( ngày linh hoạt )
+    const [calendarDisplay, setCalendarDisplay] = useState([styles.hide]) // Ẩn hiện dropbox lịch
+    const [flexibleDayDropboxDisplay, setFlexibleDayDropboxDisplay] = useState([styles.hide])
 
     const [state, setState] = useState([
         {
@@ -53,12 +60,21 @@ function Heading() {
             endDate: new Date(),
             key: 'selection',
         }
-    ]); // Calender
+    ]); // Calendar
 
     // 3. guest
     const [guestDisplay, setGuestDisplay] = useState([])
     const [guestActived, setGuestActived] = useState([])
+    const [numberGuest, setNumberGuest] = useState([0, 0, 0, 0])
 
+    // const handlePlusClick = (e, item) => { // Tăng số lượng khách và hiển thị
+    //     e.target.previousSibling.innerHTML =  e.target.previousSibling.innerHTML*1 + 1
+    //     item.number++;
+    // }
+    // const handleDecreaseClick = (e, item) => { // Giảm số lượng khách và hiển thị
+    //     e.target.nextSibling.innerHTML =  e.target.nextSibling.innerHTML*1 - 1
+    //     item.number--;
+    // }
     // get API locations when type
     useEffect(() => {
         fetch(locationsApi)
@@ -80,7 +96,7 @@ function Heading() {
         handleBackgroundMoving()
     }
 
-    // handle backGround change
+    // handle background change
     const handleBackgroundColor = () => {
         if (window.pageYOffset !== 0) {
             setBackgroundColor([styles.header, styles.backgroundWhite])
@@ -156,6 +172,7 @@ function Heading() {
             ///////////////////
             setDateDropboxDisplay([styles.hide])
             setGuestDisplay([styles.hide])
+            setFlexibleDayActived([])
             setDayStartActived([])
             setDayEndActived([])
             setGuestActived([])
@@ -170,9 +187,11 @@ function Heading() {
             setBackgroundColorF7([styles.backgroundF7])
             setDayStartActived([styles.actived])
             setDateDropboxDisplay([])
+            setCalendarDisplay([])
             ///////////////////
             setSearchDisplay([styles.hide])
             setGuestDisplay([styles.hide])
+            setFlexibleDayActived([])
             setSearchActived([])
             setDayEndActived([])
             setGuestActived([])
@@ -185,7 +204,27 @@ function Heading() {
             setBackgroundColorF7([styles.backgroundF7])
             setDayEndActived([styles.actived])
             setDateDropboxDisplay([])
+            setCalendarDisplay([])
             ///////////////////
+            setSearchDisplay([styles.hide])
+            setGuestDisplay([styles.hide])
+            setFlexibleDayActived([])
+            setDayStartActived([])
+            setSearchActived([])
+            setGuestActived([])
+        }
+    }
+
+    // 2.3 Flexible date
+    const handleClickFlexibleDate = (e) => {
+        if (e.target === e.currentTarget || e.target.nodeName.toLowerCase() === 'p') {
+            setBackgroundColorF7([styles.backgroundF7])
+            setFlexibleDayActived([styles.actived])
+            setFlexibleDayDisplay([])
+            setDateDropboxDisplay([])
+            ///////////////////
+            setDayEndActived([])
+            setCalendarDisplay([styles.hide])
             setSearchDisplay([styles.hide])
             setGuestDisplay([styles.hide])
             setDayStartActived([])
@@ -203,35 +242,97 @@ function Heading() {
             ///////////////////
             setSearchDisplay([styles.hide])
             setDateDropboxDisplay([styles.hide])
+            setFlexibleDayActived([])
             setDayStartActived([])
             setSearchActived([])
             setDayEndActived([])
         }
     }
 
+
     // end
     //////////////////////////////////////////////////////////////////
 
 
     //////////////////////////////////////////////////////////////////
-    // Swap between calender and flexible day
-    const handleClickCalenderAndFlexibleDay = () => {
+    // Swap between calendar and flexible day
+    const handleClickCalendarAndFlexibleDay = (e) => {
+        if (e.target.innerText === 'Lịch') {
+            setDayStartDisplay([])
+            setDayEndDisplay([])
+            setCalendarDisplay([])
+            setFlexibleDayDisplay([styles.hide])
+            setFlexibleDayDropboxDisplay([styles.hide])
+            setDayFlexibleSelected([])
+            setCalendarSelected([styles.selected])
+            setDayStartActived([styles.actived])
+        }
+        if (e.target.innerText === 'Ngày linh hoạt') {
+            setDayStartDisplay([styles.hide])
+            setDayEndDisplay([styles.hide])
+            setCalendarDisplay([styles.hide])
+            setFlexibleDayDisplay([])
+            setFlexibleDayDropboxDisplay([])
+            setDayFlexibleSelected([styles.selected])
+            setFlexibleDayActived([styles.actived])
+            setDayEndActived([])
+            setCalendarSelected([])
+        }
+    }
+
+    // lấy data 12 tháng
+    const get12months = () => {
+        const result = [];
+        const today = new Date();
+        let month, year;
+
+        for (let i = 1; i < 13; i++) {
+            month = today.getMonth() + i;
+            year = `20${today.getYear() - 100}`;
+
+            if (today.getMonth() + i > 12) {
+                year = `20${today.getYear() - 99}`;
+                month = today.getMonth() + i - 12;
+            }
+
+            result.push({
+                month,
+                year
+            })
+        }
+        return result;
+    }
+
+    // flexible
+    const [range, setRange] = useState('Cuối tuần') // chọn khoảng thời gian nào
+    const [typeMonth, setTypeMonth] = useState([]) // chọn tháng nào
+    // end
+    //////////////////////////////////////////////////////////////////
+
+    //////////////////////////////////////////////////////////////////
+    // Xử lý Navbar Nơi ở và Trải nhiệm
+    const handleClickNavbarPlace = () => {
+        console.log(styles.active);
+    }
+
+    const handleClickNavbarExperience = () => {
 
     }
 
-
     // end
     //////////////////////////////////////////////////////////////////
 
+
     // handle show language Box
     const handleShowHeading = () => { setShow(!show1) }
-    const handleShowDropbox = (e) => {
+    const handleShowDropbox = () => {
         if (!userNode.current.className.includes('active')) {
             setShowUser(clsx(styles.userDropbox, styles.active))
         } else {
             setShowUser(clsx(styles.userDropbox))
         }
     }
+
 
     return (
         <header className={clsx(...backgroundColor, ...colorHeader)}>
@@ -257,8 +358,8 @@ function Heading() {
                     {/* When on top */}
                     <div className={clsx(...colorChange, grid.l4, grid.col, grid.m12, ...topSearch)}>
                         <ul className={clsx(grid.row)}>
-                            <li className={clsx(styles.midleItem, styles.active, grid.l2, grid.col)}>Nơi ở</li>
-                            <li className={clsx(styles.midleItem, grid.l4, grid.col)}>Trải nghiệm</li>
+                            <li onClick={handleClickNavbarPlace} className={clsx(styles.midleItem, styles.active, grid.l2, grid.col)}>Nơi ở</li>
+                            <li onClick={handleClickNavbarExperience} className={clsx(styles.midleItem, grid.l4, grid.col)}>Trải nghiệm</li>
                             <li className={clsx(styles.midleItem, grid.l6, grid.col)}>Trải nghiệm trực tuyến</li>
                         </ul>
                     </div>
@@ -324,8 +425,8 @@ function Heading() {
                 {/* Navbar sticky */}
                 <div className={clsx(...colorChangeSticky)}>
                     <ul className={clsx(grid.row)}>
-                        <li className={clsx(styles.midleItem, grid.l2, grid.col)}>Nơi ở</li>
-                        <li className={clsx(styles.midleItem, grid.l4, grid.col)}>Trải nghiệm</li>
+                        <li onClick={handleClickNavbarPlace} className={clsx(styles.midleItem, grid.l2, grid.col)}>Nơi ở</li>
+                        <li onClick={handleClickNavbarExperience} className={clsx(styles.midleItem, grid.l4, grid.col)}>Trải nghiệm</li>
                         <li className={clsx(styles.midleItem, grid.l6, grid.col)}>Trải nghiệm trực tuyến</li>
                     </ul>
                 </div>
@@ -336,7 +437,6 @@ function Heading() {
                         <br />
                         <input onChange={handleInputChange} placeholder='Bạn sắp đi đâu?' />
                         <div className={clsx(styles.searchActiveSearchPlace, ...searchDisplay)}>
-
                             {/* default search active */}
                             <div className={clsx(styles.searchPlaceDefault, ...searchBoxDefault)}>
                                 <p className={clsx(styles.placeText)}>Mọi lúc, mọi nơi</p>
@@ -365,28 +465,33 @@ function Heading() {
                     {/* date */}
                     <div className={clsx(styles.searchActiveMidleContainer)}>
                         {/* date start */}
-                        <div onClick={handleClickDateStart} className={clsx(styles.searchActiveMidleContent, ...dayStartActived)}>
+                        <div onClick={handleClickDateStart} className={clsx(styles.searchActiveMidleContent, ...dayStartDisplay, ...dayStartActived)}>
                             Nhận phòng
                             <p className={clsx(styles.searchActiveText)}>{state[0].a || state[0].startDate.getDate() + ' ' + 'thg' + ' ' + (state[0].startDate.getMonth() + 1)}</p></div>
                         {/* date end */}
-                        <div onClick={handleClickDateEnd} className={clsx(styles.searchActiveMidleContent, ...dayEndActived)}>
+                        <div onClick={handleClickDateEnd} className={clsx(styles.searchActiveMidleContent, ...dayEndDisplay, ...dayEndActived)}>
                             Trả phòng
                             <p className={clsx(styles.searchActiveText)}>{state[0].a || state[0].endDate.getDate() + ' ' + 'thg' + ' ' + (state[0].endDate.getMonth() + 1)}</p>
                         </div>
-                        {/* date when click ngày linh hoạt */}
-
+                        {/* navbar thay đổi khi chọn flexible */}
+                        <div onClick={handleClickFlexibleDate} className={clsx(styles.searchActiveMidleContent, ...flexibleDayDisplay, ...flexibleDayActived)}>
+                            Ngày linh hoạt
+                            <p>{`${range} vào ${typeMonth.length === 1 ? `Tháng ${typeMonth}` : typeMonth.map((item) => {
+                                return `Thg ${item}`
+                            })}`}</p>  {/* Xử lý hiện tháng đã chọn */}
+                        </div>
                         {/* date when click navbar trải nhiệm */}
 
-                        {/* dropbox */}
+                        {/* dropbox midle ( CALENDAR and FLEXIBLE DATE) */}
                         <div className={clsx(styles.searchActiveMidleDropbox, ...dateDropboxDisplay)}>
                             <div className={styles.searchActiveMidleDropboxText}>
                                 <div>
-                                    <p className={clsx(...calenderSelected)}>Lịch</p>
-                                    <p className={clsx(styles.pLast, ...dayFlexibleSelected)}>Ngày linh hoạt</p>
+                                    <p onClick={handleClickCalendarAndFlexibleDay} className={clsx(...calendarSelected)}>Lịch</p>
+                                    <p onClick={handleClickCalendarAndFlexibleDay} className={clsx(styles.pLast, ...dayFlexibleSelected)}>Ngày linh hoạt</p>
                                 </div>
                             </div>
-                            {/* calender */}
-                            <div className={styles.calender}>
+                            {/* calendar */}
+                            <div className={clsx(styles.calendar, ...calendarDisplay)}>
                                 <DateRange
                                     editableDateInputs={true}
                                     onChange={item => {
@@ -410,18 +515,97 @@ function Heading() {
                                 />
                             </div>
                             {/* Ngày linh hoạt */}
+                            <div className={clsx(styles.flexibleDay, ...flexibleDayDropboxDisplay)}>
+                                <h2 className={clsx(styles.flexibleDayText)}>Bạn muốn ở trong bao lâu?</h2>
+                                <div className={clsx(styles.flexibleRangeDayContainer)}>
+                                    {['Cuối tuần', '1 tuần', '1 tháng'].map((item, index) => {
+                                        return <div
+                                            onClick={() => setRange(item)}
+                                            className={item === range ? clsx(styles.flexibleRangeDay, styles.active) : clsx(styles.flexibleRangeDay)}
+                                            key={index}
+                                        >
+                                            {item}
+                                        </div>
+                                    })}
+                                </div>
+                                <h2 className={clsx(styles.flexibleDayText)} >Bạn muốn đi khi nào?</h2>
+                                <div className={clsx(styles.flexibleMonthChosenContainer)}>
+                                    {get12months().map((item, index) => {
+                                        return (
+                                            <div
+                                                key={index}
+                                                onClick={(e) => {
+                                                    e.currentTarget.classList.toggle(styles.active)
+                                                    if (!typeMonth.includes(item.month)) {
+                                                        setTypeMonth([...typeMonth, item.month])
+                                                    } else {
+                                                        setTypeMonth([...typeMonth].filter(month => month !== item.month))
+                                                    }
+                                                }}
+                                                className={clsx(styles.flexibleMonthChosenContent)}
+                                            >
+                                                <div className={clsx(styles.flexibleIcon)}
+                                                >
+                                                    {!typeMonth.includes(item.month) ? <BsCalendar /> : <BsCalendarCheck />}
+                                                </div>
+                                                <div className={styles.month}>{`Tháng ${item.month}`}</div>
+                                                <div className={styles.year}>{item.year}</div>
+                                            </div>
+                                        )
+                                    })}
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div onClick={handleClickCustomer} className={clsx(styles.searchActiveContent, ...guestActived)}>
                         Khách
-                        <p className={clsx(styles.searchActiveText)}>Thêm khách</p>
+                        <p className={clsx(styles.searchActiveText, !numberGuest.reduce((item, curr) => { return item += curr }, 0) || styles.colorblack)}>
+                            {/* Hiển thị số lượng khách chọn 3 vòng Thú -> trẻ em -> khách */}
+                            {/* {numberGuest[0] > 0 ? (((numberGuest[2]) ? `${numberGuest[0] + numberGuest[1]} khách, ${numberGuest[2]} em bé` : `${numberGuest[0] + numberGuest[1]} khách`)) : `Thêm khách`} */}
+                            {numberGuest[0] > 0 ? (((numberGuest[2]) ? ((numberGuest[2] && numberGuest[3]) ? (`${numberGuest[0] + numberGuest[1]} khách, ${numberGuest[2]} em bé, ${numberGuest[3]} thú cưng`) : (`${numberGuest[0] + numberGuest[1]} khách, ${numberGuest[2]} em bé`)) : ((numberGuest[3] ? `${numberGuest[0] + numberGuest[1]} khách, ${numberGuest[3]} thú cưng` : false ) || `${numberGuest[0] + numberGuest[1]} khách`))) : `Thêm khách`}
+                        </p>
+                        {/* number people and pet */}
+                        <div className={clsx(styles.searchActiveNumberPeople)}>
+                            {/* Render 4 kiểu khách */}
+                            { 
+                                [{ title: 'Người lớn', des: 'từ 13 tuổi trở lên' },
+                                { title: 'Trẻ em', des: 'Độ tuổi 2 - 12' },
+                                { title: 'Em bé', des: 'Dưới 2 tuổi' },
+                                { title: 'Thú cưng', des: 'Bạn sẽ mang theo động vật phục vụ?' }].map((item, index) => {
+                                    return (
+                                        <div key={index} className={clsx(styles.numberPeopleContainer)}>
+                                            <div className={clsx(styles.numberPeopleTextContainer)}>
+                                                <h3 className={clsx(styles.numberPeopleTitle)}>{item.title}</h3>
+                                                <p className={item.title === 'Thú cưng' ? clsx(styles.numberPeopleText, styles.emphasize) : clsx(styles.numberPeopleText)}>{item.des}</p>
+                                            </div>
+                                            <div className={clsx(styles.numberPeopleGoing)}>
+                                                <div onClick={(e) => {
+                                                    if (!e.target.className.includes(styles.disabled)) {
+                                                        if (numberGuest[index] != 0)
+                                                            numberGuest[index]--;
+                                                        setNumberGuest([...numberGuest])
+                                                    }
+                                                }} className={clsx(styles.decrease, numberGuest[index] === 0 ? styles.disabled : '', (index === 0) && (numberGuest.reduce((item, curr) => { return item += curr }, 0) > 1 && numberGuest[0] === 1) ? styles.disabled : '')}>-</div>
+                                                <div className={clsx(styles.number)}>{numberGuest[index]}</div>
+                                                <div onClick={(e) => {
+                                                    numberGuest[index]++;
+                                                    if (numberGuest[0] === 0) numberGuest[0]++;
+                                                    setNumberGuest([...numberGuest])
+                                                }} className={clsx(styles.plus)}>+</div>
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                            }
+                            <div>Nếu bạn may mắn có nhiều hơn 2 thú cưng đi cùng, hãy nhớ cho Chủ nhà biết.</div>
+                        </div>
                     </div>
                     <span className={clsx(styles.searchButton, styles.searchActiveButton)}>
                         <SearchIcon />
                     </span>
                 </div>
             </div>
-        </header>
+        </header >
     )
 
 }
