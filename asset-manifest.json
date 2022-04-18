@@ -1,23 +1,24 @@
 {
   "files": {
-    "main.css": "/airbnb/static/css/main.26b5faba.css",
-    "main.js": "/airbnb/static/js/main.851ceadc.js",
-    "static/js/787.b7ef6672.chunk.js": "/airbnb/static/js/787.b7ef6672.chunk.js",
-    "static/media/anhnen.webp": "/airbnb/static/media/anhnen.3cff81b73bc0daa506e3.webp",
-    "static/media/1.jpg": "/airbnb/static/media/1.14966ce05b28cd830e67.jpg",
-    "static/media/1.webp": "/airbnb/static/media/1.b5d6e0d4b56f547765c1.webp",
-    "static/media/2.webp": "/airbnb/static/media/2.2b7110f584c5e14b8e36.webp",
-    "static/media/3.webp": "/airbnb/static/media/3.0e6a6cedc9f2900a9df4.webp",
-    "static/media/4.webp": "/airbnb/static/media/4.e7093a3335f0b27e00da.webp",
-    "static/media/logoLeft.png": "/airbnb/static/media/logoLeft.c8525cb86fe857ccae9b.png",
-    "static/media/logoLeftMini.png": "/airbnb/static/media/logoLeftMini.c822d64157067e9db2e3.png",
-    "index.html": "/airbnb/index.html",
-    "main.26b5faba.css.map": "/airbnb/static/css/main.26b5faba.css.map",
-    "main.851ceadc.js.map": "/airbnb/static/js/main.851ceadc.js.map",
-    "787.b7ef6672.chunk.js.map": "/airbnb/static/js/787.b7ef6672.chunk.js.map"
+    "main.css": "/static/css/main.b385ade8.css",
+    "main.js": "/static/js/main.36172027.js",
+    "static/js/787.b7ef6672.chunk.js": "/static/js/787.b7ef6672.chunk.js",
+    "static/media/anhnen.webp": "/static/media/anhnen.3cff81b73bc0daa506e3.webp",
+    "static/media/1.jpg": "/static/media/1.14966ce05b28cd830e67.jpg",
+    "static/media/pet-service.jpg": "/static/media/pet-service.c81d2c7895b074ccb13a.jpg",
+    "static/media/1.webp": "/static/media/1.b5d6e0d4b56f547765c1.webp",
+    "static/media/2.webp": "/static/media/2.2b7110f584c5e14b8e36.webp",
+    "static/media/3.webp": "/static/media/3.0e6a6cedc9f2900a9df4.webp",
+    "static/media/4.webp": "/static/media/4.e7093a3335f0b27e00da.webp",
+    "static/media/logoLeft.png": "/static/media/logoLeft.c8525cb86fe857ccae9b.png",
+    "static/media/logoLeftMini.png": "/static/media/logoLeftMini.c822d64157067e9db2e3.png",
+    "index.html": "/index.html",
+    "main.b385ade8.css.map": "/static/css/main.b385ade8.css.map",
+    "main.36172027.js.map": "/static/js/main.36172027.js.map",
+    "787.b7ef6672.chunk.js.map": "/static/js/787.b7ef6672.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.26b5faba.css",
-    "static/js/main.851ceadc.js"
+    "static/css/main.b385ade8.css",
+    "static/js/main.36172027.js"
   ]
 }
