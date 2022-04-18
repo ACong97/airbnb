@@ -30,7 +30,7 @@ function Language({ show, showOnlyLang, showOnlyMoney }) {
             } else {
                 return clsx(styles.autoTransButton)
             }
-        }, [])
+        })
     }
 
     const handleLang = (item, e) => {
@@ -39,6 +39,7 @@ function Language({ show, showOnlyLang, showOnlyMoney }) {
 
     const handleShow = () => {
         setShow(false)
+        document.body.style.overflow = ""
     }
 
     const handleLanguageSite = (e) => {

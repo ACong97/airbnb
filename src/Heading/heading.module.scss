@@ -1,10 +1,24 @@
 @keyframes hoverOpen {
     from {
-        transform: scaleX(0)
+        width: 0;
+        transform: translate(-50%, 0);
     }
 
     to {
-        transform: scaleX(1)
+        width: 6px;
+        transform: translate(-50%, 0);
+    }
+}
+
+@keyframes hoverOpenActive {
+    from {
+        width: 6px;
+        transform: translate(-50%, 0);
+    }
+
+    to {
+        width: 20px;
+        transform: translate(-50%, 0);
     }
 }
 
@@ -27,6 +41,16 @@
 
     to {
         height: 80px;
+    }
+}
+
+@keyframes zoom-in {
+    from {
+        transform: scale(1)
+    }
+
+    to {
+        transform: scale(0.95)
     }
 }
 
@@ -83,10 +107,21 @@
             white-space: nowrap;
         }
 
-        .midleItem.active.midleItem::before {
+        .midleItem.actived.midleItem::before {
             width: 20px;
-            left: 36%;
+            left: 50%;
+            transform: translate(-50%, 0);
             display: block;
+            border-radius: 4px;
+            animation: hoverOpenActive .2s forwards linear;
+        }
+
+        .actived.midleItem:hover.midleItem::before {
+            display: block;
+        }
+
+        .actived.midleItem:hover {
+            opacity: 1;
         }
 
         .midleItem:hover {
@@ -94,7 +129,6 @@
         }
 
         .midleItem:hover.midleItem::before {
-            animation: hoverOpen linear 0.2s;
             display: block;
         }
 
@@ -102,10 +136,14 @@
             content: "";
             display: none;
             position: absolute;
-            width: 4px;
+            width: 6px;
             bottom: 0;
+            transform: translate(-50%, 0);
             left: 50%;
-            border-bottom: solid 2px #fff;
+            animation: hoverOpen linear 0.1s;
+            border-radius: 4px;
+            height: 2px;
+            background-color: #fff;
         }
     }
 
@@ -113,6 +151,7 @@
     // headerRight
     .rightContainer {
         font-size: 14px;
+        color: inherit;
 
 
         .rightButton {
@@ -130,6 +169,12 @@
         .rightBecomeHost {
             padding: 8px 16px;
             border-radius: 36px;
+            color: inherit;
+
+            a {
+                text-decoration: none;
+                color: inherit;
+            }
         }
 
         .rightBecomeHost:hover,
@@ -170,14 +215,27 @@
             border-radius: 16px;
             box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
             display: none;
+            overflow: hidden;
 
-            p {
-                padding: 16px 16px;
+            .userText {
+                margin: 4px 0;
+                padding: 12px 16px;
+                display: block;
+            }
+            .userText:hover {
+                background-color: rgb(246, 246, 246);
+                
             }
 
             // Upper
             .userDropBoxTop {
                 border-bottom: 1px solid #ccc;
+            }
+
+            .signIn,
+            .login {
+                text-decoration: none;
+                color: inherit;
             }
 
             .signIn {
@@ -226,10 +284,16 @@
                 padding: 16px 20px;
                 border-radius: 36px;
                 cursor: pointer;
+                width: 25%;
 
                 .searchActiveText {
-                    color: #ccc;
+                    color: #838383;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    width: 60%;
                 }
+
                 .searchActiveText.colorblack {
                     color: #000
                 }
@@ -241,7 +305,7 @@
                 }
 
                 input::placeholder {
-                    color: #ccc;
+                    color: #838383;
                 }
 
                 input:focus {
@@ -249,6 +313,7 @@
                 }
 
                 .searchActiveSearchPlace {
+                    display: none;
                     width: 404px;
                     position: absolute;
                     top: 100%;
@@ -328,6 +393,7 @@
 
                 // Number people
                 .searchActiveNumberPeople {
+                    display: none;
                     position: absolute;
                     top: 100%;
                     right: 0;
@@ -358,6 +424,7 @@
                                 text-decoration: underline;
                                 color: #000;
                                 font-weight: 600;
+                                cursor: pointer;
                             }
                         }
 
@@ -376,14 +443,15 @@
                                 display: flex;
                                 align-items: center;
                                 line-height: 1px;
-                                height: 25px;
-                                width: 25px;
+                                height: 31px;
+                                width: 31px;
                                 border-radius: 100%;
                                 border: 1px solid #717171;
                                 font-size: 19px;
                                 font-weight: bold;
                                 color: #717171;
                                 cursor: pointer;
+                                user-select: none;
                             }
 
                             .decrease:hover,
@@ -409,6 +477,10 @@
                     }
                 }
 
+                .numberPeopleFooter {
+                    color: #717171;
+                }
+
                 // Ngày hoạt động
                 .searchActiveDate {
                     position: absolute;
@@ -425,9 +497,9 @@
             }
 
             .searchActiveMidleContainer {
-                max-width: 43%;
+                max-width: 50%;
                 position: relative;
-                flex: 40% 40% 1;
+                flex: 50% 1 1;
                 display: flex;
 
                 .searchActiveMidleContent {
@@ -436,6 +508,43 @@
                     border-radius: 36px;
                     cursor: pointer;
                     position: relative;
+                    width: 100%;
+
+                    .searchActiveMidleText {
+                        width: 90%;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+
+                    .searchActiveText {
+                        color: #838383;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        width: 100%;
+                    }
+
+                    .searchActiveText.colorblack {
+                        color: #000
+                    }
+                }
+
+                .searchActiveMidleContent:hover {
+                    background-color: #ebebeb;
+                }
+
+                .searchActiveMidleContent.actived:hover {
+                    background-color: #fff;
+                }
+
+                .actived {
+                    background-color: #fff;
+                    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+                }
+
+                .searchActiveMidleContent.actived~.searchActiveMidleDropbox {
+                    display: block;
                 }
 
                 .searchActiveMidleContent::before {
@@ -448,7 +557,57 @@
                     border-right: 1px solid rgb(214, 214, 214);
                 }
 
+                //  Trải nhiệm navbar được active
+                .searchActiveMidleTakeLeft {
+                    flex: 100% 1 1;
+                    padding: 16px 20px;
+                    border-radius: 36px;
+                    cursor: pointer;
+                    position: relative;
+                    width: 100%;
+
+                    .calendarMidleLeft {
+                        position: absolute;
+                        top: 100%;
+                        display: none;
+                        left: -50%;
+                        padding: 12px 24px;
+                        background-color: #fff;
+                        margin-top: 10px;
+                        border-radius: 36px;
+                        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+                            rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+                        cursor: default;
+                    }
+                    
+                    .searchActiveMidleTakeLeftText {
+                        color: #838383;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        width: 100%;
+                    }
+                }
+
+                .searchActiveMidleTakeLeft.actived .calendarMidleLeft {
+                    display: block;
+                }
+
+                .searchActiveMidleTakeLeft:hover {
+                    background-color: #ebebeb;
+                }
+
+                .searchActiveMidleTakeLeft.actived:hover {
+                    background-color: #fff;
+                }
+
+                .actived {
+                    background-color: #fff;
+                    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+                }
+
                 .searchActiveMidleDropbox {
+                    display: none;
                     position: absolute;
                     top: 100%;
                     left: -50%;
@@ -474,14 +633,20 @@
                             padding: 4px;
                             border-radius: 24px;
 
-                            p {
+                            button {
                                 border-radius: 24px;
                                 padding: 5px 14px;
+                                border: none;
                                 cursor: pointer;
                             }
 
-                            p:hover,
-                            p.selected {
+                            button:active {
+                                transform: scale(0.925);
+                                animation: zoom-in 0.2s linear;
+                            }
+
+                            button:hover,
+                            button.selected {
                                 background-color: #fff !important;
                             }
 
@@ -507,11 +672,17 @@
                             margin-top: 20px;
 
                             .flexibleRangeDay {
-                                padding: 4px 12px;
+                                background-color: #fff;
+                                padding: 8px 12px;
                                 margin: 0 4px;
                                 border: 1px solid #ccc;
                                 border-radius: 24px;
                                 cursor: pointer;
+                            }
+
+                            .flexibleRangeDay:active {
+                                transform: scale(0.925);
+                                animation: zoom-in 0.2s linear;
                             }
 
                             .flexibleRangeDay:hover {
@@ -527,7 +698,49 @@
                         .flexibleMonthChosenContainer {
                             display: flex;
                             max-width: 638px;
-                            overflow-x: scroll;
+                            overflow-x: hidden;
+                            // position: relative; Không sử dụng position với element này
+                            margin: 0 24px;
+                            scroll-behavior: smooth;
+
+
+                            //Next and Prev icon
+                            .next {
+                                right: 5%;
+                            }
+
+                            .previous {
+                                left: 5%;
+                            }
+
+                            .next,
+                            .previous {
+                                transform: translate(0, -30%);
+                                top: 75%;
+                                border-radius: 50%;
+                                align-items: center;
+                                display: flex;
+                                justify-content: center;
+                                background-color: #fff;
+                                border: 1px solid #ccc;
+                                padding: 8px;
+                                position: absolute; // dính lấy dropbox
+                                z-index: 1;
+                                box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+                                transition: all 0.5 ease;
+                            }
+
+                            .next:hover,
+                            .previous:hover {
+                                transform: translate(0, -30%) scale(1.075);
+                                box-shadow: none;
+                            }
+
+                            .next:active,
+                            .previous:active {
+                                transform: translate(0, -30%);
+                            }
+
 
                             .flexibleMonthChosenContent {
                                 text-align: center;
@@ -558,6 +771,11 @@
                                 border: 1px solid #000;
                             }
 
+                            .flexibleMonthChosenContent:active {
+                                transform: scale(0.925);
+                                animation: zoom-in 0.1s linear;
+                            }
+
                             .flexibleMonthChosenContent.active {
                                 border: 1px solid #000;
                                 background-color: #f7f7f7;
@@ -578,6 +796,10 @@
                 background-color: #fff;
             }
 
+            .actived.searchActiveContent .searchActiveNumberPeople,
+            .actived.searchActiveContent .searchActiveSearchPlace {
+                display: block;
+            }
 
             .searchActiveContent:hover {
                 background-color: #ebebeb;
@@ -671,8 +893,8 @@
 }
 
 .backgroundWhite {
+    animation: smoothHeader 0.2s ease-in-out;
     background-color: #fff;
-    animation: smoothHeader .1s linear;
 }
 
 .backgroundF7 {
@@ -686,11 +908,10 @@
 .h80 {
     height: 80px;
 }
-
 // Responsive
-@media (min-width: 950px) and (max-width: 1123px) {}
+// @media (min-width: 950px) and (max-width: 1123px) {}
 
-@media (min-width: 742px) and (max-width: 949px) {}
+// @media (min-width: 742px) and (max-width: 949px) {}
 
 
 // Change logo
@@ -734,7 +955,6 @@
         }
 
         .midleItem:hover.midleItem::before {
-            animation: hoverOpen linear 0.2s;
             display: block;
         }
 
@@ -742,11 +962,39 @@
             content: "";
             display: none;
             position: absolute;
-            width: 4px;
+            width: 6px;
             bottom: 0;
+            transform: translate(-50%, 0);
             left: 50%;
-            border-bottom: solid 2px #fff;
+            animation: hoverOpen linear 0.1s;
+            height: 2px;
+            border-radius: 4px;
+            background-color: #fff;
         }
+        
+        .midleItem.actived.midleItem::before {
+            border-radius: 4px;
+            overflow: hidden;
+            width: 20px;
+            left: 50%;
+            transform: translate(-50%, 0);
+            display: block;
+            animation: hoverOpenActive .2s forwards linear;
+        }
+
+        .actived.midleItem:hover.midleItem::before {
+            display: block;
+        }
+
+        .actived.midleItem:hover {
+            opacity: 1;
+        }
+    }
+}
+
+@media (max-width: 943px) {
+    .flexibleMonthChosenContainer {
+        max-width: 534px !important;
     }
 }
 

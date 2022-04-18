@@ -1,0 +1,331 @@
+@keyframes move-up {
+    from {
+        transform: scale(1) translate(0, -50%);
+        transform-origin: left top;
+        top: 50%;
+    }
+
+    to {
+        transform: scale(0.75) translate(0, 0);
+        transform-origin: left top;
+        top: 10%;
+    }
+}
+
+@keyframes move-down {
+    from {
+        transform: scale(0.75) translate(0, 0);
+        transform-origin: left top;
+        top: 10%;
+    }
+
+    to {
+        transform: scale(1) translate(0, -50%);
+        transform-origin: left top;
+        top: 50%;
+    }
+}
+
+@keyframes zoom-in {
+    from {
+        transform: scale(1)
+    }
+
+    to {
+        transform: scale(0.95)
+    }
+}
+
+@keyframes show-app {
+    from {
+        top: 150%;
+        opacity: 0;
+    }
+
+    to {
+        top: 50%;
+        opacity: 1;
+    }
+}
+
+.app {
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+
+    .background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.4;
+        background-color: rgb(44, 44, 44);
+    }
+
+    .container {
+        width: 570px;
+        background-color: #fff;
+        color: #000;
+        transform: translate(-50%, -50%);
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        animation: show-app .3s linear forwards;
+        border-radius: 16px;
+
+        // Header
+        .header {
+            text-align: center;
+            position: relative;
+            padding: 24px;
+            border-bottom: 1px solid #eaeaea;
+
+            .title {
+                font-size: 16px;
+            }
+
+            .headerIcon {
+                position: absolute;
+                left: 4%;
+                top: 50%;
+                transform: translate(0, -50%);
+                font-size: 20px;
+            }
+        }
+
+        // Content
+        .content {
+            padding: 24px;
+
+            .contentHeader {
+                font-size: 22px;
+                margin-bottom: 8px;
+            }
+
+            .contentBody {
+                margin-top: 16px;
+
+                .emailSection,
+                .phoneNumberSection {
+                    border-radius: 8px;
+                    border: 1px solid #ccc;
+
+                    .phoneNumber,
+                    .country {
+                        // border: 1px solid transparent;
+                        position: relative;
+                        padding: 0 12px;
+                        min-height: 56px;
+                        display: block;
+
+                        .countryTitle {
+                            color: #717171;
+                            font-size: 16px;
+                            position: absolute;
+                            transform: scale(0.75) translate(0, 0);
+                            transform-origin: left top;
+                            top: 10%;
+                        }
+
+                        .countryText {
+                            position: absolute;
+                            background-color: transparent;
+                            top: 0;
+                            padding: 26px 0 10px 9px;
+                            margin-left: -12px;
+                            width: 100%;
+                            height: 100%;
+                            border: none;
+                            font-size: 16px;
+                            z-index: 1;
+                        }
+
+                        .countryText:focus {
+                            outline: none;
+                        }
+
+                        .countryText:after {
+                            color: red
+                        }
+
+                        .phoneNumberTitle {
+                            color: #717171;
+                            font-size: 16px;
+                            position: absolute;
+                            top: 50%;
+                            transform: scale(1) translate(0, -50%);
+                            animation: move-down .1s linear;
+                        }
+
+                        .inputSection {
+                            width: 100%;
+                            height: 100%;
+                            display: flex;
+                            position: absolute;
+                            z-index: 1;
+                            align-items: center;
+
+                            .emailText,
+                            .phoneNumberText {
+                                color: transparent;
+                                background-color: transparent;
+                                border: none;
+                                width: 100%;
+                                padding: 26px 6px 6px 0px;
+                                font-size: 16px;
+                            }
+
+                            .emailText::placeholder,
+                            .phoneNumberText::placeholder {
+                                color: transparent;
+                                user-select: none;
+                            }
+
+                            .emailText:focus,
+                            .phoneNumberText:focus,
+                            .actived.firstNumber {
+                                color: #000;
+                                border: none;
+                                outline: none;
+                            }
+
+                            .emailText:focus.emailText::placeholder,
+                            .phoneNumberText:focus.phoneNumberText::placeholder {
+                                color: #ccc;
+                            }
+
+                            .firstNumber {
+                                font-size: 18px;
+                                padding: 24px 6px 6px 0px;
+                                color: transparent;
+                                user-select: none;
+                                cursor: text;
+                            }
+                        }
+
+                        // ACTIVED
+                        .actived.phoneNumberTitle {
+                            animation: move-up .1s linear forwards;
+                        }
+
+                        .actived.phoneNumberText {
+                            color: #000;
+                        }
+                    }
+
+                    .country {
+                        border-bottom: 1px solid #ccc;
+                    }
+                }
+
+                .phoneNumberFooter {
+                    font-size: 11px;
+                    margin-top: 8px;
+                    letter-spacing: 0.4px;
+
+                    .emphasize {
+                        text-decoration: underline;
+                        font-weight: bold;
+                        cursor: pointer;
+                    }
+                }
+
+                .submit {
+                    width: 100%;
+                    background-image: radial-gradient(circle at center center, rgb(255, 56, 92) 0%, rgb(230, 30, 77) 27.5%, rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%, rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%) !important;
+                    padding: 16px 0;
+                    border: none;
+                    border-radius: 12px;
+                    color: #fff;
+                    font-size: 16px;
+                    font-weight: 600;
+                    margin-top: 16px;
+                    margin-bottom: 24px;
+                    cursor: pointer;
+                }
+
+                .submit:active {
+                    animation: zoom-in .2s linear forwards;
+                }
+            }
+
+            .midleLine {
+                width: 100%;
+                z-index: 1;
+                padding: 8px;
+
+                .midleLineText {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #484848;
+                    font-size: 12px;
+                }
+
+                .midleLineText::after {
+                    content: "";
+                    background-color: rgb(221, 221, 221);
+                    height: 1px;
+                    width: 100%;
+                    display: block;
+                    margin-left: 16px;
+                }
+
+                .midleLineText::before {
+                    content: "";
+                    background-color: rgb(221, 221, 221);
+                    height: 1px;
+                    width: 100%;
+                    display: block;
+                    margin-right: 16px;
+                }
+            }
+
+            .footerContainer {
+
+                .footerLink {
+                    padding: 8px 23px;
+                    border: 1px solid #000;
+                    margin-top: 16px;
+                    border-radius: 8px;
+                    display: flex;
+                    cursor: pointer;
+                    align-items: center;
+                    user-select: none;
+
+                    .footerIcon {
+                        font-size: 24px;
+                    }
+
+                    .footerText {
+                        width: 100%;
+                        text-align: center;
+                    }
+                }
+
+                .footerLink:hover {
+                    background-color: rgb(247, 247, 247);
+                }
+
+                .footerLink:active {
+                    animation: zoom-in .2s linear forwards;
+                }
+            }
+        }
+    }
+}
+
+label.actived {
+    outline: 1px solid #222;
+    border-radius: 8px;
+}
+
+.hide {
+    display: none !important;
+}
