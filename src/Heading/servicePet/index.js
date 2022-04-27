@@ -13,15 +13,15 @@ function ServicePet( {showService} ) {
         setShow1(!show1)
     }, [showService])
 
-    const handleClickClocers = () => {
+    const handleClickCloser = () => {
         setShow1(!show1)
         document.body.style.overflow = ""
     }
 
     return (<div className={clsx(styles.container, show1 || styles.hide)}>
-        <div onClick={handleClickClocers} className={clsx(styles.background)}></div>
+        <div onClick={handleClickCloser} className={clsx(styles.background)}></div>
         <div className={clsx(styles.content)}>
-            <div onClick={handleClickClocers} className={clsx(styles.icon)}><IoCloseOutline /></div>
+            <div onClick={handleClickCloser} className={clsx(styles.icon)}><IoCloseOutline /></div>
             <div className={clsx(styles.picture)}><img src={img} /></div>
             <h2 className={clsx(styles.title)}>Động vật phục vụ</h2>
             <div className={clsx(styles.text)}>Động vật phục vụ không phải thú cưng nên bạn không cần thêm vào dây.</div>

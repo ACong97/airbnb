@@ -2,7 +2,7 @@ import styles from './style.module.scss'
 import clsx from 'clsx'
 import { IoCloseOutline, IoLogoFacebook, IoLogoApple, IoMailOutline } from 'react-icons/io5'
 import { FcGoogle, FcCellPhone } from 'react-icons/fc'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 
 
@@ -36,8 +36,26 @@ function Login() {
         setEmailDisplay(!emailDisplay)
     }
 
-    const handleSubmit = (e) => {
-        console.log(e);
+
+    //SUBMIT
+    const inputPhoneNumber = useRef()
+    const inputEmail = useRef()
+
+    const handleSubmit = (e) => { // handle Submit and show Error
+        const validateEmail = (email) => {
+            return String(email)
+                .toLowerCase()
+                .match(
+                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                );
+        };
+        e.preventDefault()
+
+        if (validateEmail(inputEmail.current.value)) {
+            console.log(inputEmail.current.value);
+        } else {
+            console.dir(inputEmail.current);
+        }
     }
 
 
@@ -106,6 +124,7 @@ function Login() {
                                 <div className={clsx(styles.inputSection)}>
                                     <div className={clsx(activeClass || styles.actived, styles.firstNumber)}>{firstNumber}</div>
                                     <input
+                                        ref={inputPhoneNumber}
                                         onBlur={handleToggleClassActive}
                                         onFocus={handleToggleClassActive}
                                         id="phoneNumber" className={clsx(styles.phoneNumberText, activeClass || styles.actived)}
@@ -123,6 +142,7 @@ function Login() {
                                 {/* ĐÂY LÀ Input khi được Forcus nó actived header và hiện ra // header đc position , thằng dưới không được mà cố định tại điểm đó luôn */}
                                 <div className={clsx(styles.inputSection)}>
                                     <input
+                                        ref={inputEmail}
                                         onBlur={handleToggleClassActive}
                                         onFocus={handleToggleClassActive}
                                         id="email" className={clsx(styles.emailText)}
@@ -133,8 +153,9 @@ function Login() {
                                 <div className={clsx(activeClass || styles.actived, styles.phoneNumberTitle)}>Email</div>
                             </label>
                         </div>
+                        <div className={clsx(styles.errorMessage)}>Cần điền số điện thoại</div>
                         {/* Submit btn */}
-                        <button onClick={handleSubmit} type="submit" className={clsx(styles.submit)}>Tiếp tục</button>
+                        <button onClick={handleSubmit} className={clsx(styles.submit)}>Tiếp tục</button>
                     </form>
                 </div>
                 <div className={clsx(styles.midleLine)}>

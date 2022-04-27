@@ -177,10 +177,21 @@
             }
         }
 
+        .rightBecomeHost.colorBlack a {
+            color: black;
+        }
+
         .rightBecomeHost:hover,
         .rightButton:hover {
-            background-color: rgba(255, 255, 255, 0.15);
+            background-color: #262626;
         }
+
+        .backgroundF7hover.rightButton:hover,
+        .backgroundF7hover.rightBecomeHost:hover {
+            background-color: #f7f7f7;
+        }
+
+        
 
         .userLoggin {
             background-color: #fff;

@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useLayoutEffect } from 'react'
 import { Link, Outlet } from 'react-router-dom'
 
 import { GlobeAltIcon, UserCircleIcon, MenuIcon, SearchIcon, ChevronRightIcon } from '@heroicons/react/solid'
@@ -30,7 +30,7 @@ function Heading() {
     const [colorChangeSticky, setColorChangeSticky] = useState([styles.midleContainerSticky])
 
     // hide and show search box when moving scroll
-    const [topSearch, setTopSearch] = useState([]) // set display khi PageYOffset == 0
+    const [topSearch, setTopSearch] = useState(true) // set display khi PageYOffset == 0
     const [movingSearch, setMovingSearch] = useState([styles.hide]) // set display khi pageYOffset != 0
 
     // Search active
@@ -104,20 +104,28 @@ function Heading() {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // scroll down
-    window.onscroll = () => {
-        if (!headerActiveDom.current.classList.contains(styles.hide)) {
-            handleBackgroundColor()
-            handleColorChange()
-            // handleBackGroundHeight()
-            handleBackgroundMoving()
+    useEffect(() => {
+        const handle = () => {
+            if (!headerActiveDom.current.classList.contains(styles.hide)) {
+                handleBackgroundColor()
+                handleColorChange()
+                // handleBackGroundHeight()
+                handleBackgroundMoving()
+            }
+
+            if (window.pageYOffset === 0) {
+                handleBackgroundMoving()
+                handleColorChange()
+                setBackgroundColor([styles.header])
+            }
         }
 
-        if (window.pageYOffset === 0) {
-            handleBackgroundMoving()
-            handleColorChange()
-            setBackgroundColor([styles.header])
+        window.addEventListener('scroll', handle)
+
+        return () => {
+            window.removeEventListener('scroll', handle)
         }
-    }
+    })
 
     // handle background change
     const handleBackgroundColor = () => {
@@ -131,10 +139,10 @@ function Heading() {
     // handle display small search when scroll
     const handleBackgroundMoving = () => {
         if (window.pageYOffset !== 0) {
-            setTopSearch([styles.hide])
+            setTopSearch(false)
             setMovingSearch([])
         } else {
-            setTopSearch([])
+            setTopSearch(true)
             setMovingSearch([styles.hide])
         }
     }
@@ -185,7 +193,6 @@ function Heading() {
     // Display and show Active box item
     // 1. place
     const handleClickSearchActiveBox = (e) => {
-        setIsNotActived(true)
         if (e.target === e.currentTarget || e.target.nodeName.toLowerCase() === 'input') {
             setBackgroundColorF7([styles.backgroundF7])
             setSearchActived([styles.actived])
@@ -204,7 +211,6 @@ function Heading() {
     // 2. date
     // 2.1. date start
     const handleClickDateStart = (e) => {
-        setIsNotActived(true)
         if (e.target === e.currentTarget || e.target.nodeName.toLowerCase() === 'p') {
             setBackgroundColorF7([styles.backgroundF7])
             setDayStartActived([styles.actived])
@@ -219,7 +225,6 @@ function Heading() {
 
     // 2.2. date end
     const handleClickDateEnd = (e) => {
-        setIsNotActived(true)
         if (e.target === e.currentTarget || e.target.nodeName.toLowerCase() === 'p') {
             setBackgroundColorF7([styles.backgroundF7])
             setDayEndActived([styles.actived])
@@ -231,10 +236,9 @@ function Heading() {
             setGuestActived([])
         }
     }
-
+    
     // 2.3 Flexible date
     const handleClickFlexibleDate = (e) => {
-        setIsNotActived(true)
         if (e.target === e.currentTarget || e.target.nodeName.toLowerCase() === 'p') {
             setBackgroundColorF7([styles.backgroundF7])
             setFlexibleDayActived([styles.actived])
@@ -250,7 +254,6 @@ function Heading() {
 
     // 2.4 Flexible date
     const handleClickMidleLeftDate = (e) => {
-        setIsNotActived(true)
         if (e.target === e.currentTarget || e.target.nodeName.toLowerCase() === 'p') {
             setBackgroundColorF7([styles.backgroundF7])
             setDayMidleLeftActived([styles.actived])
@@ -266,7 +269,6 @@ function Heading() {
 
     // 3. number customer
     const handleClickCustomer = (e) => {
-        setIsNotActived(true)
         if (e.target === e.currentTarget || e.target.nodeName.toLowerCase() === 'p') {
             setBackgroundColorF7([styles.backgroundF7])
             setGuestActived([styles.actived])
@@ -362,7 +364,7 @@ function Heading() {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Xử lý Navbar Nơi ở và Trải nhiệm
     const [midleTakeLeftDisplay, setMidleTakeLeftDisplay] = useState([styles.hide])
-    const [active, setActive] = useState(true)
+    const [active, setActive] = useState(false) // Hiện và xóa animation của navbar
 
     const handleClickNavbarPlace = () => {
         setMidleTakeLeftDisplay([styles.hide])
@@ -395,7 +397,7 @@ function Heading() {
     // end
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    
+
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Đóng các tab khi OnMouseUp bên ngoài header
@@ -403,34 +405,36 @@ function Heading() {
     const headerActiveDom = useRef() // search active dom
     const midleActiveDom = useRef() // navbar dom
 
+    const closeAllApp = () => {
+        setGuestActived([])
+        setFlexibleDayActived([])
+        setDayStartActived([])
+        setSearchActived([])
+        setDayEndActived([])
+        setDayMidleLeftActived([])
+        setBackgroundColorF7([])
+        setTopSearch(true)
+        setMovingSearch([styles.hide])
+    }
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         let handle = (e) => {
             if (!headerDom.current.contains(e.target) && !headerActiveDom.current.contains(e.target) && !userNode.current.contains(e.target) && !midleActiveDom.current.contains(e.target)) {
                 setShowUser(clsx(styles.userDropbox)) // Đóng login
 
                 if (window.pageYOffset !== 0) {
-                    setTopSearch([styles.hide])
+                    setTopSearch(false)
                     setMovingSearch([])
                 } else {
-                    setGuestActived([])
-                    setFlexibleDayActived([])
-                    setDayStartActived([])
-                    setSearchActived([])
-                    setDayEndActived([])
-                    setDayMidleLeftActived([])
-                    setBackgroundColorF7([])
-                    setTopSearch([])
-                    setMovingSearch([styles.hide])
+                    closeAllApp()
                 }
             }
-            console.log(e.target);
         }
 
-        document.addEventListener("mouseup", handle)
+        document.addEventListener("click", handle)
 
 
-        return () => { document.removeEventListener("mouseup", handle) }
+        return () => { document.removeEventListener("click", handle) }
     }, [])
     // end
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -472,7 +476,7 @@ function Heading() {
                     <div className={clsx(styles.headerLeft, grid.l4, grid.col)}>
                         <img
                             alt='1'
-                            style={{ transform: 'scale(1.5)', transformOrigin: 'left' }} 
+                            style={{ transform: 'scale(1.5)', transformOrigin: 'left' }}
                             className={clsx(styles.logoPc, styles.leftLogo)}
                             src={require('./img/logoLeft.png')}
                         />
@@ -480,14 +484,14 @@ function Heading() {
                             alt='1'
                             className={clsx(styles.logoMobile, styles.leftLogo)}
                             src={require('./img/logoLeftMini.png')}
-                            style={{ transform: 'scale(1.5)', transformOrigin: 'left' }} 
+                            style={{ transform: 'scale(1.5)', transformOrigin: 'left' }}
                         />
                     </div>
 
 
                     {/* Middle - search */}
                     {/* When on top */}
-                    <div ref={midleActiveDom} className={clsx(...colorChange, grid.l4, grid.col, grid.m12, ...topSearch)}>
+                    <div ref={midleActiveDom} className={clsx(...colorChange, grid.l4, grid.col, grid.m12, topSearch || styles.hide)}>
                         <ul className={clsx(grid.row)}>
                             <li onClick={handleClickNavbarPlace} className={clsx(styles.midleItem, !active || styles.actived, grid.l2, grid.col)}>Nơi ở</li>
                             <li onClick={handleClickNavbarExperience} className={clsx(styles.midleItem, grid.l4, grid.col, !!active || styles.actived)}>Trải nghiệm</li>
@@ -496,7 +500,7 @@ function Heading() {
                     </div>
                     {/* When moving */}
                     <div onClick={() => {
-                        setTopSearch([])
+                        setTopSearch(true)
                         setMovingSearch([styles.hide])
                     }} className={clsx(grid.l4, grid.m6, grid.col, ...movingSearch)}>
                         <div className={clsx(styles.midleContainer1)}>
@@ -512,8 +516,8 @@ function Heading() {
                     {/* Right */}
                     <div className={clsx(grid.l4, grid.col)}>
                         <div className={clsx(grid.row, grid.aliCenter, grid.jEnd, grid.nogutters, styles.rightContainer)}>
-                            <p className={clsx(grid.col, styles.rightBecomeHost)}><Link to="/host">Trở thành chủ nhà</Link></p>
-                            <button onClick={handleShowHeading} className={clsx(grid.col, styles.rightButton, styles.cursorPointer)}><GlobeAltIcon className={styles.icon20} /></button>
+                            <p className={clsx(grid.col, styles.rightBecomeHost, topSearch || styles.backgroundF7hover)}><Link to="/host">Trở thành chủ nhà</Link></p>
+                            <button onClick={handleShowHeading} className={clsx(grid.col, styles.rightButton, styles.cursorPointer, topSearch || styles.backgroundF7hover)}><GlobeAltIcon className={styles.icon20} /></button>
                             <div className={clsx(grid.col, styles.positionRelative)}>
                                 {/* Navbar của dropbox */}
                                 <div
@@ -548,7 +552,7 @@ function Heading() {
             </div>
 
             {/* Search */}
-            <div ref={headerActiveDom} className={clsx(grid.wide, grid.grid, styles.searchActiveContainer, ...topSearch)}>
+            <div ref={headerActiveDom} className={clsx(grid.wide, grid.grid, styles.searchActiveContainer, topSearch || styles.hide)}>
                 {/* Navbar sticky */}
                 <div className={clsx(...colorChangeSticky)}>
                     <ul className={clsx(grid.row)}>
