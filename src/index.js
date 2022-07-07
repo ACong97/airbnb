@@ -19,11 +19,7 @@ ReactDOM.render(
           <Route path="login" element={<Login />} />
         </Route>
         <Route path="host" element={<Host />} />
-        <Route path="search" element={<Search />}>
-
-          {/* filter o day */}
-
-        </Route>
+        <Route path="search" element={<Search />} />
         <Route
           path="*"
           element={
