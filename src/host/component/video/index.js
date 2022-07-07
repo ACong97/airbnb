@@ -89,7 +89,7 @@ function Video({
             {textVideo ? <div className={clsx(styles.videoText)}>
                 <div className={clsx(styles.videoTextName)}>
                     {/* img */}
-                    <img src={textVideo ? imgData[0].imgUrl : ''} />
+                    <img alt="anh1" src={textVideo ? imgData[0].imgUrl : ''} />
                 </div>
                 <div className={clsx(styles.videoTextPlace)}>
                     {textVideo ? imgData[0].place : ''}

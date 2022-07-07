@@ -37,7 +37,7 @@ function Footer() {
                                     'Biện pháp ứng phó với đại dịch COVID-19 của chúng tôi',
                                     'Báo cáo lo ngại của hàng xóm'
                                 ].map((item, index) => {
-                                    if (index == 0) {
+                                    if (index === 0) {
                                         return <li key={index} className={clsx(styles.item)}>
                                             {item}
                                         </li>
@@ -57,7 +57,7 @@ function Footer() {
                                     'Hỗ trợ dân tị nạn thế giới',
                                     'Chống phân biệt đối xử'
                                 ].map((item, index) => {
-                                    if (index == 0) {
+                                    if (index === 0) {
                                         return <li key={index} className={clsx(styles.item)}>
                                             {item}
                                         </li>
@@ -79,7 +79,7 @@ function Footer() {
                                     'Truy cập diễn đàn cộng đồng',
                                     'Đón tiếp khách có trách nhiệm'
                                 ].map((item, index) => {
-                                    if (index == 0) {
+                                    if (index === 0) {
                                         return <li key={index} className={clsx(styles.item)}>
                                             {item}
                                         </li>
@@ -102,7 +102,7 @@ function Footer() {
                                     'Nhà đầu tư',
                                     'Airbnb Luxe'
                                 ].map((item, index) => {
-                                    if (index == 0) {
+                                    if (index === 0) {
                                         return <li key={index} className={clsx(styles.item)}>
                                             {item}
                                         </li>

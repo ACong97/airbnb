@@ -33,7 +33,7 @@ function Header({ styles, bigLogoSrc, smallLogoSrc, icons, navbarData }) {
     return (<header className={styles.app}>
         <div className={styles.container}>
             <div className={styles.logo}>
-                <img src={logoSrc} />
+                <img alt="logo" src={logoSrc} />
             </div>
             <div className={styles.rightContent}>
                 <div className={styles.becomeHost}>Trở thành chủ nhà</div>
@@ -79,13 +79,13 @@ function Header({ styles, bigLogoSrc, smallLogoSrc, icons, navbarData }) {
                 {navbarData.map((item, index) => {
                     return <Link
                         onClick={() => { handleNavbarLinkClick(index) }}
-                        className={clsx(styles.navbarLink, index == selectedIndex && styles.actived)}
+                        className={clsx(styles.navbarLink, index === selectedIndex && styles.actived)}
                         // to={`/search/${index}`}
                         to={'/search'}
                         key={index}
                     >
                         <div className={styles.navbarImg}>
-                            <img src={item.icon} />
+                            <img alt="item mà" src={item.icon} />
                         </div>
                         <div className={styles.navbarText}>
                             {item.title}

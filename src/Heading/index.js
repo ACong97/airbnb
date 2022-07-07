@@ -7,7 +7,7 @@ import grid from '../grid.module.scss'
 import styles from './heading.module.scss';
 import Language from './language';
 import ServicePet from './servicePet';
-import Login from './login'
+// import Login from './login'
 import { IoLocationOutline } from 'react-icons/io5'
 import { BsCalendar, BsCalendarCheck, BsChevronRight, BsChevronLeft } from 'react-icons/bs'
 
@@ -17,7 +17,7 @@ import { DateRange } from 'react-date-range';
 import * as languages from 'react-date-range/dist/locale'
 
 function Heading() {
-    const [isNotActived, setIsNotActived] = useState(false);
+    // const [isNotActived, setIsNotActived] = useState(false);
 
     const [show1, setShow] = useState(true);
     const [showUser, setShowUser] = useState(clsx(styles.userDropbox));
@@ -36,7 +36,7 @@ function Heading() {
     // Search active
     // 1. search
     const [searchActived, setSearchActived] = useState([]) // set active hoặc trạng thái thường nút Địa điểm
-    const [searchDisplay, setSearchDisplay] = useState([styles.hide]) // ẩn hiện dropbox của Địa điểm
+    // const [searchDisplay, setSearchDisplay] = useState([styles.hide]) // ẩn hiện dropbox của Địa điểm
     const [inputSearch, setInputSearch] = useState('') // Lấy input
     const [inputSearchData, setInputSearchData] = useState([]) // Dữ liệu dùng để render
     const [searchBoxHide, setSearchBoxHide] = useState([styles.hide]) // Search box active
@@ -49,7 +49,7 @@ function Heading() {
     const [dayEndDisplay, setDayEndDisplay] = useState([]) // Ẩn hiện dayend
     const [dayStartActived, setDayStartActived] = useState([]) // Ngày bắt đầu đến active khi Click
     const [dayEndActived, setDayEndActived] = useState([]) // Ngày cuối cùng active khi Click
-    const [dateDropboxDisplay, setDateDropboxDisplay] = useState([styles.hide]) // dropbox display
+    // const [dateDropboxDisplay, setDateDropboxDisplay] = useState([styles.hide]) // dropbox display
     const [dayFlexibleSelected, setDayFlexibleSelected] = useState([]) // Ngày linh hoạt và Lịch khi được chuyển
     const [calendarSelected, setCalendarSelected] = useState([styles.selected]) // Lịch chọn ngày
     const [flexibleDayDisplay, setFlexibleDayDisplay] = useState([styles.hide]) // Ẩn hiện flexible ( ngày linh hoạt )
@@ -236,7 +236,7 @@ function Heading() {
             setGuestActived([])
         }
     }
-    
+
     // 2.3 Flexible date
     const handleClickFlexibleDate = (e) => {
         if (e.target === e.currentTarget || e.target.nodeName.toLowerCase() === 'p') {
@@ -599,11 +599,11 @@ function Heading() {
                         {/* date start */}
                         <div onClick={handleClickDateStart} className={clsx(styles.searchActiveMidleContent, ...dayStartDisplay, ...dayStartActived)}>
                             Nhận phòng
-                            <p className={clsx(styles.searchActiveText, !(state[0].a !== 'Thêm ngày') || styles.colorblack)}>{state[0].a || state[0].startDate.getDate() + ' ' + 'thg' + ' ' + (state[0].startDate.getMonth() + 1)}</p></div>
+                            <p className={clsx(styles.searchActiveText, !(state[0].a !== 'Thêm ngày') || styles.colorblack)}>{state[0].a || state[0].startDate.getDate() + ' thg ' + (state[0].startDate.getMonth() + 1)}</p></div>
                         {/* date end */}
                         <div onClick={handleClickDateEnd} className={clsx(styles.searchActiveMidleContent, ...dayEndDisplay, ...dayEndActived)}>
                             Trả phòng
-                            <p className={clsx(styles.searchActiveText, !(state[0].a !== 'Thêm ngày') || styles.colorblack)}>{state[0].a || state[0].endDate.getDate() + ' ' + 'thg' + ' ' + (state[0].endDate.getMonth() + 1)}</p>
+                            <p className={clsx(styles.searchActiveText, !(state[0].a !== 'Thêm ngày') || styles.colorblack)}>{state[0].a || state[0].endDate.getDate() + ' thg ' + (state[0].endDate.getMonth() + 1)}</p>
                         </div>
                         {/* navbar thay đổi khi chọn flexible */}
                         <div onClick={handleClickFlexibleDate} className={clsx(styles.searchActiveMidleContent, ...flexibleDayDisplay, ...flexibleDayActived)}>
@@ -737,7 +737,7 @@ function Heading() {
                                             <div className={clsx(styles.numberPeopleGoing)}>
                                                 <div onClick={(e) => {
                                                     if (!e.target.className.includes(styles.disabled)) {
-                                                        if (numberGuest[index] != 0)
+                                                        if (numberGuest[index] !== 0)
                                                             numberGuest[index]--;
                                                         setNumberGuest([...numberGuest])
                                                     }

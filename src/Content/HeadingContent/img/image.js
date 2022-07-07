@@ -2,6 +2,7 @@ import nen from './anhnen.webp'
 
 function Image() {
     return <img
+        alt="ảnh nền"
         src={nen}
         style={
             {

@@ -46,7 +46,7 @@ function Header({ img }) {
                     <div className={styles.avataList}>
                         {img.map((item, index) => {
                             return <div className={styles.avata} key={index}>
-                                <img src={item} />
+                                <img alt="anhitem" src={item} />
                             </div>
                         })}
                     </div>

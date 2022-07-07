@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import styles from './styles.module.scss';
-import { IoChevronBackOutline, IoChevronForwardOutline, IoFastFood } from 'react-icons/io5'
-import { useState, useRef, useEffect } from 'react'
+import { IoChevronBackOutline, IoChevronForwardOutline } from 'react-icons/io5'
+import { useState, useRef } from 'react'
 
 function Content1({ data }) {
 
@@ -70,7 +70,7 @@ function Content1({ data }) {
                         </div>
                         <div className={styles.footer}>
                             <div className={styles.name}>
-                                <img src={item.name} />
+                                <img alt="anhitem1" src={item.name} />
                             </div>
                             <div className={styles.footerText}>
                                 {item.place}
@@ -83,10 +83,10 @@ function Content1({ data }) {
             <div className={styles.content}></div>
         </div>
         <div className={styles.button}>
-            <div onClick={() => { handlePrevClick(idNumber) }} className={clsx(styles.prev, idNumber == 0 && styles.disabled)}>
+            <div onClick={() => { handlePrevClick(idNumber) }} className={clsx(styles.prev, idNumber === 0 && styles.disabled)}>
                 <IoChevronBackOutline />
             </div>
-            <div onClick={() => { handleNextClick(idNumber) }} className={clsx(styles.next, idNumber == 5 && styles.disabled)}>
+            <div onClick={() => { handleNextClick(idNumber) }} className={clsx(styles.next, idNumber === 5 && styles.disabled)}>
                 <IoChevronForwardOutline />
             </div>
         </div>

@@ -15,7 +15,7 @@ function FooterContent() {
     return <div className={clsx(grid.grid)}>
         <div className={clsx(styles.container)}>
             <div className={clsx(grid.grid, grid.wide, styles.img)}>
-                <img src={img1} />
+                <img alt="cô gái và con chồn" src={img1} />
                 <div className={clsx(grid.grid, grid.wide, styles.content)}>
                     <p>Bạn có thắc mắc về việc đón tiếp khách?</p>
                     <Button content='Hỏi ý kiến Chủ nhà siêu cấp' />

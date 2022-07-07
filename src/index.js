@@ -12,7 +12,7 @@ import Search from './search'
 
 
 ReactDOM.render(
-  <BrowserRouter>
+  <BrowserRouter basename="airbnb">
     <React.StrictMode>
       <Routes>
         <Route path="/" element={<App />}>

@@ -1,5 +1,5 @@
 // import styles from './styles.module.scss'
-import clsx from 'clsx'
+// import clsx from 'clsx'
 import { useState, useRef, useEffect } from 'react'
 
 function Banner1({ bigImg, smallImg, text, textBtn, styles, imgLeft }) {
@@ -25,11 +25,11 @@ function Banner1({ bigImg, smallImg, text, textBtn, styles, imgLeft }) {
     return (<div ref={appDom} className={styles.app}>
         <div className={styles.container}>
             <div className={styles.imgBanner}>
-                <img src={img} />
+                <img alt="anh1" src={img} />
             </div>
             <div className={styles.content}>
                 <div className={styles.contentImg}>
-                    <img src={imgLeft} />
+                    <img alt="anhtrai" src={imgLeft} />
                 </div>
                 {text.map((item, index) => <div key={index} className={styles.text}>{item}</div>)}
                 <button className={styles.button}>{textBtn}</button>

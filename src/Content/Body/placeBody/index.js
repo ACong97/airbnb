@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState } from 'react'
 
 import styles from './style.module.scss'
 import grid from '../../../grid.module.scss'

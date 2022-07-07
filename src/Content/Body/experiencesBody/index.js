@@ -16,7 +16,7 @@ function Experience() {
                     <div className={clsx(grid.col, grid.l6, grid.m12, grid.c12)}>
                         <div className={clsx(styles.container)}>
                             <div className={clsx(styles.img)}>
-                                <img src={img1} />
+                                <img alt="3 bạn trẻ trong hang đá" src={img1} />
                             </div>
                             <div className={clsx(styles.content)}>
                                 <div className={clsx(styles.text)}>
@@ -29,7 +29,7 @@ function Experience() {
                     <div className={clsx(grid.col, grid.l6, grid.m12, grid.c12)}>
                         <div className={clsx(styles.container)}>
                             <div className={clsx(styles.img)}>
-                                <img src={img2} />
+                                <img alt="cô giặt đồ" src={img2} />
                             </div>
                             <div className={clsx(styles.content)}>
                                 <div className={clsx(styles.text)}>
