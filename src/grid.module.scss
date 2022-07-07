@@ -44,7 +44,7 @@
 
 .grid.wide {
     max-width: 1600px;
-    padding: 0 60px;
+    padding: 0 24px;
     margin: 0 auto;
 }
 
@@ -181,6 +181,10 @@
 
 /* >= Tablet */
 @media (min-width: 740px) {
+    .grid.wide {
+        padding: 0 40px;
+    }
+
     .row {
         margin-left: -8px;
         margin-right: -8px;
@@ -317,6 +321,10 @@
 
 /* PC medium resolution > */
 @media (min-width: 1113px) {
+    .grid.wide {
+        padding: 0 60px;
+    }
+
     .row {
         margin-left: -12px;
         margin-right: -12px;

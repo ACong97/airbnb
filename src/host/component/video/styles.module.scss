@@ -14,6 +14,16 @@
     }
 }
 
+@keyframes zoom-in {
+    from {
+        transform: scale(1)
+    }
+
+    to {
+        transform: scale(0.95)
+    }
+}
+
 .app {
     height: 100vh;
     display: flex;
@@ -53,6 +63,7 @@
             align-items: center;
             flex-direction: column;
             color: #fff;
+            width: 100%;
 
             .text {
                 font-size: 64px;
@@ -79,6 +90,10 @@
                 border-radius: 8px;
                 cursor: pointer;
                 font-weight: 600;
+            }
+
+            .mainBtn:active {
+                animation: zoom-in .1s linear forwards;
             }
         }
 
@@ -195,13 +210,14 @@
 
                 .description {
                     color: inherit;
-                    margin: 48px 30% 0 48px;
+                    margin: 48px 30% 48px 48px;
                     text-align: left;
                 }
 
                 .mainBtn {
                     border: none;
-                    margin: 48px;
+                    margin-left: 48px;
+                    margin-bottom: 48px;
                     display: none;
                 }
             }
@@ -230,38 +246,67 @@
             width: 100%;
             flex: 70% 1 1;
 
-            video {}
-
             .videoText {
 
                 .videoTextName {
                     max-width: 200px;
-
-                    img {}
                 }
-
-                .videoTextPlace {}
             }
-
-            .videoIcon {}
         }
 
     }
+}
 
-    .reverse {}
+@media (max-width: 744px) {
+    .app {
 
-    .hide {
-        display: none;
+        .contentContainer {
+            height: 100%;
+
+            .textContainer {
+
+                .text {
+                    margin: 24px;
+                    font-size: 40px;
+                    line-height: 40px;
+                }
+
+                .description {
+                    color: inherit;
+                    margin: 0px 30% 24px 24px;
+                    text-align: left;
+                }
+
+                .mainBtn {
+                    margin-left: 24px;
+                    margin-bottom: 24px;
+                }
+            }
+
+            .footer {
+                bottom: 30%;
+
+                .footerBtn {
+                    color: rgba(0, 0, 0, 0.4);
+                    background-color: transparent;
+                    font-size: 24px;
+                }
+            }
+        }
+
+        .videoContainer {
+            flex: 60% 1 1;
+        }
     }
+}
 
-    .block {
-        display: inline-block !important;
-    }
+.block {
+    display: inline-block !important;
+}
 
-    .backgroundColorBack {
-        color: #fff !important;
-        background-color: #000 !important;
-    }
+.backgroundColorBack {
+    color: #fff !important;
+    background-color: #000 !important;
 }
 
 .hide {

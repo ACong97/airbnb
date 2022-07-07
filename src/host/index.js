@@ -2,43 +2,52 @@ import styles from './styles.module.scss';
 import clsx from 'clsx'
 
 // Content1
-import Content1 from './component/content1'
-import img11 from './component/content1/media/img/1.webp'
-import img111 from './component/content1/media/img/11.webp'
-import img22 from './component/content1/media/img/2.jpg'
-import img222 from './component/content1/media/img/22.webp'
-import img33 from './component/content1/media/img/3.webp'
-import img333 from './component/content1/media/img/33.webp'
-import img44 from './component/content1/media/img/4.webp'
-import img444 from './component/content1/media/img/44.webp'
-import img55 from './component/content1/media/img/5.webp'
-import img555 from './component/content1/media/img/55.webp'
-import img77 from './component/content1/media/img/6.webp'
-import img777 from './component/content1/media/img/66.webp'
+import Content1 from '../host/component/content1'
+import img11 from '../host/component/content1/media/img/1.webp'
+import img111 from '../host/component/content1/media/img/11.webp'
+import img22 from '../host/component/content1/media/img/2.jpg'
+import img222 from '../host/component/content1/media/img/22.webp'
+import img33 from '../host/component/content1/media/img/3.webp'
+import img333 from '../host/component/content1/media/img/33.webp'
+import img44 from '../host/component/content1/media/img/4.webp'
+import img444 from '../host/component/content1/media/img/44.webp'
+import img55 from '../host/component/content1/media/img/5.webp'
+import img555 from '../host/component/content1/media/img/55.webp'
+import img77 from '../host/component/content1/media/img/6.webp'
+import img777 from '../host/component/content1/media/img/66.webp'
 
 // Content2
 import Content2 from './component/content2'
 
 // media <VIDEO />
 import Video from './component/video'
-import video1 from './component/video/media/video/video1.webm'
-import video2 from './component/video/media/video/video2.webm'
-import img1 from './component/video/media/img/Chelsia.webp'
-import img2 from './component/video/media/img/Soraya.webp'
-import img3 from './component/video/media/img/Mohamed.webp'
-import img4 from './component/video/media/img/Maria.webp'
+import video1 from '../host/component/video/media/video/video1.webm'
+import video2 from '../host/component/video/media/video/video2.webm'
+import img1 from '../host/component/video/media/img/Chelsia.webp'
+import img2 from '../host/component/video/media/img/Soraya.webp'
+import img3 from '../host/component/video/media/img/Mohamed.webp'
+import img4 from '../host/component/video/media/img/Maria.webp'
 
-import Banner from './component/banner'
+import Banner from '../host/component/banner'
 // Banner1
-import imgBanner1a from './component/banner/media/banner1a.webp'
-import imgBanner1b from './component/banner/media/banner1b.jpg'
-import banner1css from './component/banner/stylesBanner1.module.scss'
+import imgBanner1a from '../host/component/banner/media/banner1a.webp'
+import imgBanner1b from '../host/component/banner/media/banner1b.jpg'
+import banner1css from '../host/component/banner/stylesBanner1.module.scss'
 
 // Banner2
-import imgBanner2a from './component/banner/media/banner2a.webp'
-import imgBanner2b from './component/banner/media/banner2b.webp'
-import imgBanner2Left from './component/banner/media/banner2Left.webp'
-import banner2css from './component/banner/stylesBanner2.module.scss'
+import imgBanner2a from '../host/component/banner/media/banner2a.webp'
+import imgBanner2b from '../host/component/banner/media/banner2b.webp'
+import imgBanner2Left from '../host/component/banner/media/banner2Left.webp'
+import banner2css from '../host/component/banner/stylesBanner2.module.scss'
+
+// Header
+import Header from '../host/component/header'
+import avata1 from '../host/component/header/media/avata1.webp'
+import avata2 from '../host/component/header/media/avata2.webp'
+import avata3 from '../host/component/header/media/avata3.webp'
+
+// Footer
+import Footer from '../host/component/footer'
 
 
 function Home() {
@@ -88,7 +97,7 @@ function Home() {
         },
     ]
 
-    return <div style={{scrollBehavior: 'smooth'}} className={clsx(styles.app)}>
+    return <div className={clsx(styles.app)}>
         <Video
             logoShow={true}
             buttonMoveDownDisplay={true}
@@ -119,10 +128,10 @@ function Home() {
                 }
             ]}
         />
-        <Content1 
-            data={content1Data} 
+        <Content1
+            data={content1Data}
         />
-        <Content2 
+        <Content2
             dataHouse={['Toàn bộ nhà', 'Phòng riêng', 'Phòng chung']}
             dataPlace={['Hà Nội', 'Hải Phòng', 'Hồ Chí Minh', 'Đà Nẵng', 'Nha Trang']}
         />
@@ -141,6 +150,9 @@ function Home() {
             textBtn='Tìm hiểu thêm'
             styles={banner2css}
         />
+        <Header
+            img={[avata1, avata2, avata3]}
+        />
         <Video
             logoShow={false}
             isReverse={true} // Đảo ngược khi > 950px
@@ -152,6 +164,7 @@ function Home() {
             buttonDisplay={false} // Hiện button khi dười 950px
             textAndBackground={true}
         />
+        <Footer />
     </div>
 }
 

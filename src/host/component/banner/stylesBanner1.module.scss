@@ -1,10 +1,21 @@
 @keyframes zoom-in {
-    from { transform: scale(1)}
-    to { transform: scale(0.95)}
+    from {
+        transform: scale(1)
+    }
+
+    to {
+        transform: scale(0.95)
+    }
 }
+
 @keyframes zoom-out {
-    from { transform: scale(0.95)}
-    to { transform: scale(1)}
+    from {
+        transform: scale(0.95)
+    }
+
+    to {
+        transform: scale(1)
+    }
 }
 
 .app {
@@ -13,18 +24,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     .container {
         max-width: 1760px;
         width: calc(100% - 96px);
         height: 90%;
         position: relative;
-        
+
         .imgBanner {
             height: 100%;
-            border-radius: 12px;
             overflow: hidden;
-
+            border-radius: 12px;
+            
             img {
                 object-fit: cover;
                 height: 100%;
@@ -50,6 +61,7 @@
                 font-weight: bold;
                 padding: 0 8px;
             }
+
             .button {
                 margin-top: 48px;
                 padding: 12px 24px;
@@ -60,9 +72,11 @@
                 cursor: pointer;
                 animation: zoom-out .1s linear;
             }
+
             .button:hover {
                 background-color: #f7f7f7;
             }
+
             .button:active {
                 animation: zoom-in .1s linear forwards;
             }
@@ -93,10 +107,20 @@
         height: 540px;
 
         .container {
-            
+            width: calc(100% - 48px);
+
+            .imgBanner {
+                
+                img {
+                    height: auto;
+                }
+            }
+
             .content {
 
                 .text {
+                    font-weight: 600;
+                    line-height: 36px;
                     font-size: 32px;
                 }
 
@@ -107,4 +131,3 @@
         }
     }
 }
-

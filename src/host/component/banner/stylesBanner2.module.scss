@@ -128,12 +128,12 @@
             height: 670px;
             flex-direction: column;
             background-color: #fff;
+            margin: 0 0 -46px 0;
+            justify-content:space-between;
 
             .imgBanner {
-                background-color: #f7f7f7;
-                max-height: 400px;
+                max-height: 360px;
                 width: auto;
-                margin: 0 auto;
 
                 img {
                     width: 100%;
@@ -145,6 +145,7 @@
                 width: 100%;
                 padding: 0 0 0 0px;
                 align-items: flex-start;
+                height: 55%;
     
                 .contentImg {
                     display: none;

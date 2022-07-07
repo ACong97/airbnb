@@ -1,0 +1,235 @@
+@keyframes show-up {
+    from {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    to {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@keyframes invisible {
+    from {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes zoom-in {
+    from {
+        transform: scale(1)
+    }
+
+    to {
+        transform: scale(0.95)
+    }
+}
+
+.app {
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    background-color: transparent;
+    opacity: 0;
+    visibility: hidden;
+    height: 60px;
+    animation: invisible .2s linear;
+
+    .container {
+        background-color: #fff;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .logo {
+            color: unset;
+            position: relative;
+            left: 48px;
+            transform: scale(2);
+            // transform-origin: left;
+            padding: 4px 6px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .logo:hover {
+            background-color: rgb(247, 247, 247);
+        }
+
+        .content {
+            height: 76%;
+            display: flex;
+
+            .navlink {
+                border-radius: 48px;
+                box-shadow: rgb(221 221 221) 0px 0px 0px 1px inset, rgb(0 0 0 / 18%) 0px 2px 4px !important;
+                display: flex;
+                margin-right: 48px;
+                align-items: center;
+                padding: 0px 22px 0px 6px;
+                cursor: pointer;
+
+                .avataList {
+                    display: flex;
+
+                    .avata {
+                        position: relative;
+                        height: 30px;
+                        width: 30px;
+                        min-height: 1px;
+
+                        img {
+                            object-fit: cover;
+                            vertical-align: bottom;
+                            height: 100%;
+                            border-radius: 50%;
+                        }
+                    }
+
+                    .avata:nth-child(1) {
+                        z-index: 2;
+                    }
+
+                    .avata:nth-child(2) {
+                        left: -9px;
+                        z-index: 1;
+                    }
+
+                    .avata:nth-child(3) {
+                        left: -18px;
+                    }
+                }
+
+
+                .navlinkText {
+                    font-weight: 600;
+                    word-spacing: -1px;
+                }
+            }
+
+            .becomeHost {
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                color: #fff;
+                background-image: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
+                border-radius: 8px;
+                padding: 0 24px;
+                margin-right: 48px;
+                justify-content: center;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.show {
+    animation: show-up .1s linear forwards;
+}
+
+.stay {
+    position: absolute !important;
+}
+
+@media (max-width: 744px) {
+    .app {
+        animation: show-up .1s linear forwards;
+
+        .container {
+            top: 100%;
+            transform: translateY(-100%);
+            box-sizing: unset;
+            padding: 16px 0;
+
+            .logo {
+                display: none;
+            }
+
+            .content {
+                width: 100%;
+
+                .navlink {
+                    position: fixed;
+                    bottom: 90vh;
+                    right: 0;
+                    margin-right: 24px;
+                    align-items: center;
+                    padding: 6px 8px;
+                    background-color: #fff;
+                    
+                    .avataList {
+                        
+                        .avata {
+                            display: none;
+                        }
+                    }
+                }
+                
+                .navlink:active {
+                    animation: zoom-in .1s linear forwards;
+                }
+
+                .becomeHost {
+                    width: 100%;
+                    margin: 0 24px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 375px) {
+    .app {
+        animation: show-up .1s linear forwards;
+
+        .container {
+            top: 100%;
+            transform: translateY(-100%);
+            box-sizing: unset;
+            padding: 16px 0;
+
+            .logo {
+                display: none;
+            }
+
+            .content {
+                width: 100%;
+
+                .navlink {
+                    position: fixed;
+                    bottom: 85vh;
+                    right: 0;
+                    margin-right: 24px;
+                    align-items: center;
+                    padding: 6px 8px;
+                    background-color: #fff;
+
+                    .avataList {
+
+                        .avata {
+                            display: none;
+                        }
+                    }
+                }
+
+                .becomeHost {
+                    width: 100%;
+                    margin: 0 24px;
+                }
+            }
+        }
+    }
+}

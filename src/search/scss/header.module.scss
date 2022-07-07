@@ -1,0 +1,268 @@
+.app {
+    max-width: 2108px;
+    font-size: 14px;
+
+    .container {
+        margin: 0 auto;
+        padding: 0 80px;
+        display: flex;
+        justify-content: space-between;
+        height: 80px;
+        border-top: 1px solid #f7f7f7;
+        border-bottom: 1px solid #f7f7f7;
+
+        .logo {
+            height: 100%;
+
+            img {
+                transform: scale(0.8);
+                transform-origin: left;
+                height: 100%;
+                cursor: pointer;
+            }
+        }
+
+        .rightContent {
+            display: flex;
+            align-items: center;
+
+            .becomeHost {
+                font-weight: 600;
+                cursor: pointer;
+                border-radius: 50px;
+                padding: 12px;
+            }
+
+            .globe {
+                display: flex;
+                cursor: pointer;
+                padding: 12px;
+                margin-right: 6px;
+                border-radius: 50px;
+            }
+
+            .globe:hover,
+            .becomeHost:hover {
+                background-color: #f7f7f7;
+            }
+
+            .user {
+                display: flex;
+                align-items: center;
+                border-radius: 50px;
+                border: 1px solid #DDDDDD;
+                cursor: pointer;
+                position: relative;
+                padding: 6px 2px;
+
+                .userContent {
+                    display: flex;
+                    justify-content: space-between;
+                    color: rgba(0, 0, 0, 0.7);
+                    width: 100%;
+
+                    .userContentItem {
+                        line-height: 0;
+                        font-size: 20px;
+                        padding: 0 4px;
+                    }
+                }
+
+                .dropBox {
+                    position: absolute;
+                    top: 100%;
+                    right: 0;
+                    width: 244px;
+                    padding: 8px 0;
+                    margin-top: 12px;
+                    background-color: #fff;
+                    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+                    font-size: 14px;
+                    border-radius: 16px;
+                    display: none;
+
+                    .dropBoxFooter {
+                        border-top: 1px solid #DDDDDD;
+                    }
+
+                    .dropBoxSignin {
+                        font-weight: 600;
+                    }
+
+                    .dropBoxFooterContent,
+                    .dropBoxLogin,
+                    .dropBoxSignin {
+                        padding: 12px;
+                    }
+
+                    .dropBoxFooterContent:hover,
+                    .dropBoxLogin:hover,
+                    .dropBoxSignin:hover {
+                        background-color: #f7f7f7;
+                    }
+                }
+            }
+
+            .user:hover {
+                animation: shadow-show .2s linear forwards;
+            }
+        }
+    }
+
+    .navbar {
+        margin: 0 auto;
+        padding: 0 80px;
+        display: flex;
+        justify-content: space-between;
+        height: 80px;
+        position: relative;
+
+
+        .rightBtnContainer {
+            display: flex;
+            align-items: center;
+            z-index: 3;
+            position: absolute;
+            background-color: #fff;
+            height: 100%;
+            right: 40px;
+            box-shadow: rgb(255 255 255) -16px 8px 12px 4px;
+
+            .nextBtn {
+                border-radius: 50%;
+                border: 1px solid #ccc;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 28px;
+                height: 28px;
+                cursor: pointer;
+            }
+
+            .filterBtn {
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                font-weight: bold;
+                font-size: 14px;
+                padding: 16px 20px;
+                border: 1px solid #ccc;
+                border-radius: 16px;
+                margin-left: 24px;
+                gap: 8px;
+            }
+        }
+
+        .leftBtnContainer {
+            display: flex;
+            align-items: center;
+            z-index: 3;
+            position: absolute;
+            background-color: #fff;
+            height: 100%;
+            left: 40px;
+            box-shadow: white 20px 8px 12px 4px;
+
+            .prevBtn {
+                border-radius: 50%;
+                border: 1px solid #ccc;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 28px;
+                height: 28px;
+                cursor: pointer;
+            }
+        }
+
+        .navbarList {
+            display: flex;
+            width: 80%;
+            overflow: hidden;
+            
+            .navbarLink {
+                padding-bottom: 14px;
+                max-width: 100%;
+                margin: 14px 12px 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-decoration: none;
+                color: #717171;
+                
+                
+                .navbarImg {
+
+                    img {
+                        filter: contrast(calc(13 / 44));
+                        width: 24px;
+                    }
+                }
+                
+                .navbarText {
+                    color: inherit;
+                    width: 100%;
+                    white-space: nowrap;
+                    font-size: 12px;
+                }
+            }
+
+            .navbarLink:hover {
+                border-bottom: 3px solid #ccc;
+
+                .navbarImg {
+
+                    img {
+                        filter: unset;
+                        width: 24px;
+                    }
+                }
+                
+                .navbarText {
+                    color: #000;
+                }
+            }
+
+            .actived {
+                color : #000;
+                border-bottom: 3px solid #000;
+
+                .navbarImg {
+                    img {
+                        filter: unset;
+                    }
+                }
+            }
+            .actived:hover {
+                border-bottom: 3px solid #000;
+                cursor: default;
+            }
+        }
+    }
+}
+
+@keyframes shadow-show {
+    to {
+        box-shadow: rgb(0 0 0 / 30%) 0px 6px 10px -4px;
+    }
+}
+
+@media (max-width: 1127px) {
+    .app {
+
+        .navbar,
+        .container {
+            padding: 0 40px;
+        }
+    }
+}
+
+@media (max-width: 743px) {
+    .app {
+
+        .navbar,
+        .container {
+            padding: 0 24px;
+        }
+    }
+}

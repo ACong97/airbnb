@@ -7,15 +7,22 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import App from './App';
 import Host from './host';
 import Login from './Heading/login'
+import Search from './search'
+
 
 
 ReactDOM.render(
   <BrowserRouter>
     <React.StrictMode>
       <Routes>
-        <Route path="host" element={<Host />} />
         <Route path="/" element={<App />}>
           <Route path="login" element={<Login />} />
+        </Route>
+        <Route path="host" element={<Host />} />
+        <Route path="search" element={<Search />}>
+
+          {/* filter o day */}
+
         </Route>
         <Route
           path="*"

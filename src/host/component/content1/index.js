@@ -47,18 +47,24 @@ function Content1({ data }) {
             <div className={styles.content}></div>
             {data.map((item, index) => {
 
-                let selected = true
+                let selected = false
 
                 if (index === idNumber) {
-                    selected = false
+                    selected = true
                 }
 
                 return (<div key={index} className={styles.content}>
-                    <div selected={true} className={styles.image}>
+                    <div onClick={() => {
+                        if(index === idNumber - 1) {
+                            handlePrevClick(index + 1)
+                        } else if(index === idNumber + 1) {
+                            handleNextClick(index - 1)
+                        } else {}
+                    }} className={styles.image}>
                         <div style={{ backgroundImage: `url(${item.img})` }} className={styles.picture}>
                         </div>
                     </div>
-                    <div className={clsx(styles.textContainer, selected || styles.animated)} style={selected ? { opacity: '0' } : {}}>
+                    <div className={clsx(styles.textContainer, selected && styles.animated)} style={selected ? {} : { opacity: '0' } }>
                         <div className={styles.description}>
                             {item.text}
                         </div>
